@@ -6,6 +6,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: {
         home: './pages/home.ts',
+        notFound: './pages/notFound.ts',
     },
     mode: 'development',
     module: {
