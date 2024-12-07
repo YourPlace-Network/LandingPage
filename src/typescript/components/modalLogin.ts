@@ -1,3 +1,5 @@
+import {baseConnectWallet, baseDisconnectWallet} from "../util/blockchain/base";
+
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import "../../scss/components/modalLogin.scss";
 import {
@@ -5,7 +7,6 @@ import {
     DisableDialogModalOkBtn,
     ShowDialogModalHTMLUnsafe
 } from "./modalDialog";
-import {ConnectWallet, DisconnectWallet, IsWalletConnected} from "../util/blockchain/wallet";
 import {createPopper} from "@popperjs/core/lib/popper-lite";
 
 // HTML Template: {{template "modalLogin" .}}
@@ -35,10 +36,8 @@ window.addEventListener("load", () => {
     DOM.coinbaseWalletBtn.addEventListener("click", async function (e) {
         e.stopImmediatePropagation();
         e.preventDefault();
-        if (!IsWalletConnected()) {
-            HideModalLogin();
-            await ConnectWallet("cbwalletbase");
-        }
+        HideModalLogin();
+        await baseConnectWallet();
         window.LoginCallback();
     });
     DOM.metaMaskWalletBtn.addEventListener("click", async function (e) {
@@ -47,45 +46,43 @@ window.addEventListener("load", () => {
     });
     DOM.peraWalletBtn.addEventListener("click", async function (e) {
         e.preventDefault();
-        if (!IsWalletConnected()) {
-            DisconnectWallet();
-            HideModalLogin();
-            DOM.modalDialogOkBtn.disabled = true;  // create modal dialog and it's event handlers then show it
-            DOM.modalDialogOkBtn.addEventListener("click", (e) => {
+        baseDisconnectWallet();
+        HideModalLogin();
+        DOM.modalDialogOkBtn.disabled = true;  // create modal dialog and it's event handlers then show it
+        DOM.modalDialogOkBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.replace("/");
+        });
+        DisableDialogModalExit();
+        const modalHTML = "Please sign the $0 transaction in Pera app to finish login<br>" +
+            "<btn type='button' id='loginTxnQuestionBtn' class='btn grow' data-bs-toggle='tooltip' data-bs-placement='top' " +
+            "data-bs-title='Sign a zero-dollar ($0) transaction to prove who you are'>" +
+            "<i class='bi bi-question-circle'></i></btn>" +
+            "<btn type='button' id='loginTxnResendBtn' class='btn grow' data-bs-toggle='tooltip' data-bs-placement='top' " +
+            "data-bs-title='Re-send the login transaction to your wallet'>" +
+            "<i class='bi bi-arrow-clockwise'></i></btn>";
+        let renderPeraTxnDialog = function() {
+            ShowDialogModalHTMLUnsafe(modalHTML);
+            const loginTxnQuestionBtn = document.getElementById("loginTxnQuestionBtn")! as HTMLButtonElement;
+            const loginTxnResendBtn = document.getElementById("loginTxnResendBtn")! as HTMLButtonElement;
+            const loginTxnQuestionTooltip = document.getElementById("loginTxnQuestionTooltip")! as HTMLDivElement;
+            const loginTxnResendTooltip = document.getElementById("loginTxnResendTooltip")! as HTMLDivElement;
+            createPopper(loginTxnQuestionBtn, loginTxnQuestionTooltip, {placement: "top",});
+            createPopper(loginTxnResendBtn, loginTxnResendTooltip, {placement: "top",});
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new window.bootstrap.Tooltip(tooltipTriggerEl));
+            loginTxnResendBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
-                window.location.replace("/");
+                //await ConnectWallet("pera"); todo
             });
-            DisableDialogModalExit();
-            const modalHTML = "Please sign the $0 transaction in Pera app to finish login<br>" +
-                "<btn type='button' id='loginTxnQuestionBtn' class='btn grow' data-bs-toggle='tooltip' data-bs-placement='top' " +
-                "data-bs-title='Sign a zero-dollar ($0) transaction to prove who you are'>" +
-                "<i class='bi bi-question-circle'></i></btn>" +
-                "<btn type='button' id='loginTxnResendBtn' class='btn grow' data-bs-toggle='tooltip' data-bs-placement='top' " +
-                "data-bs-title='Re-send the login transaction to your wallet'>" +
-                "<i class='bi bi-arrow-clockwise'></i></btn>";
-            let renderPeraTxnDialog = function() {
-                ShowDialogModalHTMLUnsafe(modalHTML);
-                const loginTxnQuestionBtn = document.getElementById("loginTxnQuestionBtn")! as HTMLButtonElement;
-                const loginTxnResendBtn = document.getElementById("loginTxnResendBtn")! as HTMLButtonElement;
-                const loginTxnQuestionTooltip = document.getElementById("loginTxnQuestionTooltip")! as HTMLDivElement;
-                const loginTxnResendTooltip = document.getElementById("loginTxnResendTooltip")! as HTMLDivElement;
-                createPopper(loginTxnQuestionBtn, loginTxnQuestionTooltip, {placement: "top",});
-                createPopper(loginTxnResendBtn, loginTxnResendTooltip, {placement: "top",});
-                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new window.bootstrap.Tooltip(tooltipTriggerEl));
-                loginTxnResendBtn.addEventListener("click", async (e) => {
-                    e.preventDefault();
-                    await ConnectWallet("pera");
-                });
-                DisableDialogModalOkBtn();
-            }
-            setTimeout(renderPeraTxnDialog, 3000); // delay modal to let Pera wallet render first
-            ConnectWallet("pera").then((value) => {
-                // DOM.modalDialogOkBtn.disabled = false;
-                // window.location.replace("/");
-                console.log("ConnectWallet() resolved: " + value);
-            });
+            DisableDialogModalOkBtn();
         }
+        setTimeout(renderPeraTxnDialog, 3000); // delay modal to let Pera wallet render first
+        /*ConnectWallet("pera").then((value) => {
+            // DOM.modalDialogOkBtn.disabled = false;
+            // window.location.replace("/");
+            console.log("ConnectWallet() resolved: " + value);
+        });*/
         window.LoginCallback();
     });
 });

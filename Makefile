@@ -32,9 +32,11 @@ else ifeq ($(DETECTED_OS),Darwin)
 endif
 
 install:
+	npm install webpack webpack-cli ts-loader
 	npm install package.json
+	go get
 
-dbg_build:
+build:
 	npx webpack --config src/typescript/webpack.config.js
 ifeq ($(DETECTED_OS),Windows_NT)
 	$(GO) generate
@@ -42,4 +44,11 @@ ifeq ($(DETECTED_OS),Windows_NT)
 else ifeq ($(DETECTED_OS),Darwin)
 	go generate
 	go build -o target/$(EXECUTABLE) main.go
+endif
+
+run:
+ifeq ($(DETECTED_OS),Windows_NT)
+	target/$(EXECUTABLE).exe
+else ifeq ($(DETECTED_OS),Darwin)
+	./target/$(EXECUTABLE)
 endif
