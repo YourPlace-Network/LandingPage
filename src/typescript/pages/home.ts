@@ -1,6 +1,6 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
-import "bootstrap";
-import '../../scss/pages/home.scss';
+import "../../scss/pages/home.scss";
+import "../../scss/components/menu.scss";
 
 declare global { // Extend the window interface with public objects
     interface Window {

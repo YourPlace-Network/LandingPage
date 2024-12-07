@@ -1,6 +1,6 @@
 #!make
 .DEFAULT_GOAL := clean install build run
-EXECUTABLE := LandingPage
+EXECUTABLE := YourPlaceLanding
 
 # --- OS Environment Setup --- #
 ifeq ($(OS),Windows_NT)

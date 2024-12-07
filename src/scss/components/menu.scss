@@ -1,0 +1,55 @@
+@import "../global";
+
+#htmlMenu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  height: 50px;
+  width: 50px;
+  background: map-get($colors, "quaternary");
+  z-index: 10;
+}
+#htmlMenu i {
+  display: inline-flex;
+  font-size: 40px;
+  margin-top: -1px;
+  margin-left: -8px;
+  color: map-get($colors, "tertiary");
+}
+#htmlMenuOffcanvas {
+  max-width: 80%;
+  min-width: 20%;
+  width: 250px;
+}
+#menuAvatar {
+  position: relative;
+  max-width: 75px;
+  max-height: 75px;
+}
+#menuTitle {
+  position: relative;
+  justify-content: center;
+}
+
+.offcanvas-body {
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.menuItemDiv {
+  display: block;
+  width: 100%;
+  min-width: 80%;
+  height: 50px;
+  padding-left: 10px;
+}
+.menuItemA,
+.menuItemA:hover,
+.menuItemA:active,
+.menuItemA:visited {
+  text-decoration: none;
+  color: map-get($colors, "text");
+}
+#menuLoginBtn {
+  margin-left: 6em;
+}
