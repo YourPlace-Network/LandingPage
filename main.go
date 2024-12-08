@@ -45,6 +45,7 @@ func main() {
 	router.MaxMultipartMemory = 8 << 20
 	routes.NotFoundRoutes(router, title)
 	routes.HomeRoutes(router, title)
+	routes.AboutRoutes(router, title)
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed,
 		csrf.SameSite(csrf.SameSiteStrictMode),

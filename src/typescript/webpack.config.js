@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         home: './pages/home.ts',
         notFound: './pages/notFound.ts',
+        about: './pages/about.ts',
     },
     mode: 'development',
     module: {

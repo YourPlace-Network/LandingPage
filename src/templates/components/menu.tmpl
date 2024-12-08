@@ -1,10 +1,12 @@
 {{define "htmlMenu"}}<div class="offcanvas offcanvas-end" tabindex="-1" id="htmlMenuOffcanvas"
                           aria-labelledby="htmlMenuOffcanvas" data-bs-backdrop="true" data-bs-keyboard="true">
         <div class="offcanvas-header d-flex align-items-center" id="menuOffcanvasHeader">
-            <a href="/p/" class="grow cursorPointer">
-                <img src="/static/image/avatar.png" id="menuAvatar" alt="Avatar">
+            <a href="/" class="grow cursorPointer">
+                <img src="/static/image/yourplace-logo.svg" id="menuAvatar" alt="Avatar">
             </a>
-            <button class="btn btn-primary" id="menuLoginBtn">Login</button>
+            <a href="https://app.yourplace.network/login">
+                <button class="btn btn-primary" id="menuLoginBtn">Login</button>
+            </a>
         </div>
         <div class="offcanvas-body flex">
             <a href="/download" class="menuItemA">
@@ -12,6 +14,9 @@
             </a>
             <a href="https://whitepaper.yourplace.network" class="menuItemA">
                 <div id="menuabout" class="menuItemDiv grow cursorPointer">Learn</div>
+            </a>
+            <a href="https://github.com/YourPlace-Network/YourPlace" class="menuItemA">
+                <div id="menuabout" class="menuItemDiv grow cursorPointer">Build</div>
             </a>
             <a href="https://investor.yourplace.network" class="menuItemA">
                 <div id="menuabout" class="menuItemDiv grow cursorPointer">Invest</div>
