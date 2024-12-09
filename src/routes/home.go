@@ -2,12 +2,14 @@ package routes
 
 import (
 	"YourPlace/src/core/security"
+	"database/sql"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/csrf"
 	"net/http"
+	"time"
 )
 
-func HomeRoutes(router *gin.Engine, title string) {
+func HomeRoutes(router *gin.Engine, title string, db *sql.DB) {
 	router.GET("/", func(c *gin.Context) {
 		token := csrf.Token(c.Request)
 		c.HTML(http.StatusOK, "src/templates/pages/home.tmpl", gin.H{
@@ -33,6 +35,18 @@ func HomeRoutes(router *gin.Engine, title string) {
 		}
 
 		// Save email to database
+		statement, err := db.Prepare("INSERT INTO subscribers (email, timestamp) VALUES (?, ?) ON CONFLICT (email) DO NOTHING")
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"status": "Database error"})
+			return
+		}
+		defer statement.Close()
+		timestamp := time.Now().Unix()
+		_, err = statement.Exec(payload.Email, timestamp)
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"status": "Database error"})
+			return
+		}
 
 		c.SecureJSON(http.StatusOK, gin.H{"status": "Subscribed"})
 	})

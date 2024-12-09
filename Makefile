@@ -1,5 +1,5 @@
 #!make
-.DEFAULT_GOAL := clean install build run
+.DEFAULT_GOAL := clean install build
 EXECUTABLE := YourPlaceLanding
 
 # --- OS Environment Setup --- #
@@ -25,7 +25,7 @@ ifeq ($(DETECTED_OS),Windows_NT)
 	@$(TASKKILL) /F /IM $(EXECUTABLE).exe >nul 2>&1 || exit 0
 	IF EXIST target\ del /F /Q target\*
 	$(GO) clean
-else ifeq ($(DETECTED_OS),Darwin)
+else
 	-pkill -f $(EXECUTABLE) 2>/dev/null || true
 	rm -rf target/
 	go clean
@@ -41,7 +41,7 @@ build:
 ifeq ($(DETECTED_OS),Windows_NT)
 	$(GO) generate
 	$(GO) build -ldflags="-s -w" -o target\$(EXECUTABLE).exe main.go
-else ifeq ($(DETECTED_OS),Darwin)
+else
 	go generate
 	go build -o target/$(EXECUTABLE) main.go
 endif
@@ -49,6 +49,6 @@ endif
 run:
 ifeq ($(DETECTED_OS),Windows_NT)
 	target/$(EXECUTABLE).exe
-else ifeq ($(DETECTED_OS),Darwin)
+else
 	./target/$(EXECUTABLE)
 endif

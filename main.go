@@ -4,9 +4,11 @@ import (
 	"YourPlace/src/core/middleware"
 	"YourPlace/src/core/security"
 	"YourPlace/src/routes"
+	"database/sql"
 	"embed"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
+	_ "github.com/glebarez/go-sqlite"
 	"github.com/gorilla/csrf"
 	"html/template"
 	"io/fs"
@@ -28,10 +30,18 @@ var templateFS embed.FS
 //go:embed src/www
 var wwwFS embed.FS
 
-//go:embed src/www/image/favicon.ico
-var favicon []byte
-
 func main() {
+	db, err := sql.Open("sqlite", "landingpage.sqlite.db")
+	if err != nil {
+		log.Fatalln("Could not connect to database: " + err.Error())
+	}
+	defer db.Close()
+	err = db.Ping()
+	if err != nil {
+		log.Fatalln("Could not ping database: " + err.Error())
+	}
+	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS subscribers (email TEXT PRIMARY KEY, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+
 	gin.SetMode(gin.DebugMode)
 	router := gin.Default()
 	LoadTemplates(router, templateFS, "src/templates/*tmpl")
@@ -44,22 +54,18 @@ func main() {
 	router.StaticFile("/favicon.ico", "./src/www/image/favicon.ico")
 	router.MaxMultipartMemory = 8 << 20
 	routes.NotFoundRoutes(router, title)
-	routes.HomeRoutes(router, title)
+	routes.HomeRoutes(router, title, db)
 	routes.AboutRoutes(router, title)
 	routes.DownloadRoutes(router, title)
 	// --- Start Web Server Loop --- //
-	CSRF := csrf.Protect(cryptoSeed,
-		csrf.SameSite(csrf.SameSiteStrictMode),
-		csrf.Secure(true),
-		csrf.HttpOnly(true),
-		csrf.Path("/")) // github.com/gorilla/csrf
-	// https://gin-gonic.com/docs/examples/graceful-restart-or-stop/
+	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode),
+		csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
 	var srv *http.Server
 	srv = &http.Server{
 		Addr:    ":" + strconv.Itoa(80),
 		Handler: CSRF(router),
 	}
-	err := srv.ListenAndServe()
+	err = srv.ListenAndServe()
 	if err != nil {
 		log.Println("Could not start server: " + err.Error())
 	}
