@@ -33,6 +33,9 @@ var templateFS embed.FS
 //go:embed src/www
 var wwwFS embed.FS
 
+//go:embed src/www/image/favicon.ico
+var favicon []byte
+
 func main() {
 	db, err := sql.Open("sqlite", "landingpage.sqlite.db")
 	if err != nil {
@@ -58,15 +61,13 @@ func main() {
 	router.Use(gzip.Gzip(gzip.DefaultCompression))
 	router.Use(security.Headers())
 	router.StaticFS("/static", staticFS())
-	router.StaticFile("/favicon.ico", "./src/www/image/favicon.ico")
 	router.MaxMultipartMemory = 8 << 20
 	routes.NotFoundRoutes(router, title)
-	routes.HomeRoutes(router, title, db)
+	routes.HomeRoutes(router, title, db, favicon)
 	routes.AboutRoutes(router, title)
 	routes.DownloadRoutes(router, title)
 	// --- Start Web Server Loop --- //
-	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode),
-		csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
+	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode), csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
 	var srv *http.Server
 	if ifFileExists("cert.pem") && ifFileExists("cert.key") {
 		cert, err := tls.LoadX509KeyPair("cert.pem", "cert.key")

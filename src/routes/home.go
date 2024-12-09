@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func HomeRoutes(router *gin.Engine, title string, db *sql.DB) {
+func HomeRoutes(router *gin.Engine, title string, db *sql.DB, favicon []byte) {
 	router.GET("/", func(c *gin.Context) {
 		token := csrf.Token(c.Request)
 		c.HTML(http.StatusOK, "src/templates/pages/home.tmpl", gin.H{
@@ -17,6 +17,9 @@ func HomeRoutes(router *gin.Engine, title string, db *sql.DB) {
 			"pageName":  "home",
 			"csrfToken": token,
 		})
+	})
+	router.GET("/favicon.ico", func(c *gin.Context) {
+		c.Data(http.StatusOK, "image/x-icon", favicon)
 	})
 
 	router.POST("/subscribe", func(c *gin.Context) {
