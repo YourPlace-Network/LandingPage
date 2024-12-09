@@ -5,8 +5,10 @@ import (
 	"YourPlace/src/core/security"
 	"YourPlace/src/routes"
 	"crypto/tls"
+	"crypto/x509"
 	"database/sql"
 	"embed"
+	"encoding/pem"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	_ "github.com/glebarez/go-sqlite"
@@ -63,13 +65,9 @@ func main() {
 		csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
 	var srv *http.Server
 	if ifFileExists("cert.pem") && ifFileExists("cert.key") {
-		cert, err := tls.LoadX509KeyPair("cert.pem", "cert.key")
+		tlsConfig, err := loadTLSConfig("cert.pem", "cert.key")
 		if err != nil {
-			log.Fatalln("Could not load certificates: " + err.Error())
-		}
-		tlsConfig := &tls.Config{
-			Certificates: []tls.Certificate{cert},
-			MinVersion:   tls.VersionTLS12,
+			log.Fatalln("Could not load TLS config: " + err.Error())
 		}
 		srv = &http.Server{
 			Addr:      ":443",
@@ -92,6 +90,42 @@ func main() {
 	}
 }
 
+func loadTLSConfig(certFile, keyFile string) (*tls.Config, error) {
+	certPEMBlock, err := os.ReadFile(certFile)
+	if err != nil {
+		return nil, err
+	}
+	keyPEMBlock, err := os.ReadFile(keyFile)
+	if err != nil {
+		return nil, err
+	}
+	certDERBlock, _ := pem.Decode(certPEMBlock)
+	if certDERBlock == nil {
+		return nil, err
+	}
+	keyDERBlock, _ := pem.Decode(keyPEMBlock)
+	if keyDERBlock == nil {
+		return nil, err
+	}
+	privateKey, err := x509.ParsePKCS8PrivateKey(keyDERBlock.Bytes)
+	if err != nil {
+		privateKey, err = x509.ParsePKCS1PrivateKey(keyDERBlock.Bytes)
+		if err != nil {
+			privateKey, err = x509.ParseECPrivateKey(keyDERBlock.Bytes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+	tlsCert := tls.Certificate{
+		Certificate: [][]byte{certDERBlock.Bytes},
+		PrivateKey:  privateKey,
+	}
+	return &tls.Config{
+		Certificates: []tls.Certificate{tlsCert},
+		MinVersion:   tls.VersionTLS12,
+	}, nil
+}
 func ifFileExists(file string) bool {
 	_, err := os.Stat(file)
 	if err != nil {
