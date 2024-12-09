@@ -1,6 +1,5 @@
 {{template "header" .}}
 <body class="body">
-{{/* Website Layout - https://www.shopify.com/blog/landing-page-design# */}}
 <div class="container-fluid vh-100">
     <div class="row" id="row1">
         <img id="headlineImg" src="/static/image/headliner.jpg" alt="headline image">
@@ -73,13 +72,6 @@
                     </div>
                 </div>
                 <div class="testimonial active">
-                    <p class="testimonyText">God has shown me a vision of this holy web3 application, where voices rise untethered toward heaven</p>
-                    <div class="citation">
-                        <img src="/static/image/testimonials/joanofarc.png" class="citationImg">
-                        <span class="citationAuthor">Joan of Arc</span>
-                    </div>
-                </div>
-                <div class="testimonial active">
                     <p class="testimonyText">I say to you, my fellow patriots, that this YourPlace is rather like electricity itself - invisible, powerful, and impossible for tyrants to bottle up</p>
                     <div class="citation">
                         <img src="/static/image/testimonials/franklin.jpg" class="citationImg">
@@ -94,6 +86,13 @@
                     </div>
                 </div>
                 <div class="testimonial active">
+                    <p class="testimonyText">God has shown me a vision of this holy web3 application, where voices rise untethered toward heaven</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/joanofarc.png" class="citationImg">
+                        <span class="citationAuthor">Joan of Arc</span>
+                    </div>
+                </div>
+                <div class="testimonial active">
                     <p class="testimonyText">Non-violent resistance lives in each decentralized byte that YourPlace moves</p>
                     <div class="citation">
                         <img src="/static/image/testimonials/gandhi.png" class="citationImg">
@@ -104,6 +103,37 @@
         </div>
         <div class="col-sm-1"></div>
     </div>
+    <div class="row" id="row4">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5">
+            <div id="ctaDownload" class="ctaDiv">
+                <p id="downloadText">Download the YourPlace server and start hosting your own profile</p>
+                <a href="/download">
+                    <button id="ctaButton" class="btn btn-primary clickable">
+                        <i class="bi bi-download" id="downloadBtn"></i> Download
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div id="ctaSubscribe" class="ctaDiv">
+                <p id="subscribeText">Join the YourPlace newsletter for the latest updates<br>(we won't spam you)</p>
+                <input type="text" id="emailInput" class="form-control" placeholder="Email Address">
+                <button id="ctaButton" class="btn btn-primary">
+                    <i class="bi bi-envelope"></i> Subscribe
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" id="rowFooter">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <p id="footerText">Copyright © <script>document.write(/\d{4}/.exec(Date())[0])</script> YourPlace, Inc.</p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    {{template "modalDialog" .}}
 </div>
 <input type="hidden" id="csrfToken" value="{{ .csrfToken }}">
 </body>

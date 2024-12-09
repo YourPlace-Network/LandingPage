@@ -1,52 +1,5 @@
 @import "../global.scss";
 
-html, body {
-  padding: 0;
-  margin: 0;
-}
-div {
-  margin: 0;
-  padding: 0;
-  box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
-}
-#headlineImg {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: -50;
-  position: absolute;
-  display: block;
-}
-#fade {
-  width: 100%;
-  height: 40px;
-  background: linear-gradient(transparent, #313131);
-  position: absolute;
-  top: -40px;
-  margin-top: calc((100vw * 0.484));
-  z-index: -40;
-}
-#headlineDiv {
-  width: 100%;
-  display: grid;
-  text-align: center;
-  justify-content: center;
-}
-#bannerImg {
-  width: 300px;
-  margin-top: 40px;
-}
-#subtitleText {
-  margin-top: 25px;
-  font-size: 1.7em;
-  width: 100%;
-  font-weight: bold;
-  color: map-get($colors, "text");
-  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
-}
-
 .aboutDiv {
   width: 100%;
   background-color: hsl(0, 0%, 19.2%, 0.9);

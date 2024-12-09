@@ -1,3 +1,5 @@
+import {ShowDialogModal} from "../components/modalDialog";
+
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import "../../scss/pages/home.scss";
 import "../../scss/components/menu.scss";
@@ -32,4 +34,33 @@ window.addEventListener("load", () => {
         }
     });
     setInterval(showNextTestimonial, 12000); // Start the carousel
+
+    async function subscribe() {
+        const csrfToken = (document.getElementById("csrfToken") as HTMLInputElement).value;
+        const email = (document.getElementById("emailInput") as HTMLInputElement).value;
+        try {
+            let response = await fetch("/subscribe", {
+                method: "POST",
+                cache: "no-store",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": csrfToken,
+                },
+                body: JSON.stringify({"email": email})
+            });
+            if (!response.ok) {
+                ShowDialogModal("An error occurred while subscribing to the newsletter. Please try again later.");
+                return;
+            } else {
+                ShowDialogModal("Thank you for subscribing!");
+                return;
+            }
+        } catch (error) {
+            ShowDialogModal("An error occurred while subscribing to the newsletter. Please try again later.");
+            return;
+        }
+    }
+
+    document.getElementById("emailInput")!.addEventListener("input", subscribe);
 });
