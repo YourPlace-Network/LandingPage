@@ -3,6 +3,7 @@ name: Build and Deploy to DigitalOcean
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # Enable manual trigger
 
 jobs:
   build-and-deploy:
@@ -32,7 +33,7 @@ jobs:
 
     - name: Copy binary to droplet
       run: |
-        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/
+        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding
 
     - name: Execute remote commands
       run: |
