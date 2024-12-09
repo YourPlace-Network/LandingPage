@@ -26,17 +26,17 @@ jobs:
     - name: Create SSH key from secret
       run : |
         mkdir -p ~/.ssh
-        echo "${{ secrets.DIGITALOCEAN_SSH_KEY }}" > ~/.ssh/id_rsa
+        echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.DIGITALOCEAN_HOST }} >> ~/.ssh/known_hosts
+        ssh-keyscan -H ${{ secrets.DO_SSH_HOST }} >> ~/.ssh/known_hosts
 
     - name: Copy binary to droplet
       run: |
-        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ secrets.DIGITALOCEAN_USER }}@${{ secrets.DIGITALOCEAN_HOST }}:/opt/YourPlace/
+        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ secrets.DO_SSH_USER }}@${{ secrets.DO_SSH_HOST }}:/opt/YourPlace/
 
     - name: Execute remote commands
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ secrets.DIGITALOCEAN_USER }}@${{ secrets.DIGITALOCEAN_HOST }} '
+        ssh -i ~/.ssh/id_rsa ${{ secrets.DO_SSH_USER }}@${{ secrets.DO_SSH_HOST }} '
           screen -X -S YourPlaceLanding quit || true
           screen -dmS /opt/YourPlace/YourPlaceLanding bash -c "YourPlaceLanding"
 
