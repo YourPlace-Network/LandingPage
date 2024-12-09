@@ -4,6 +4,7 @@ import (
 	"YourPlace/src/core/middleware"
 	"YourPlace/src/core/security"
 	"YourPlace/src/routes"
+	"crypto/tls"
 	"database/sql"
 	"embed"
 	"github.com/gin-contrib/gzip"
@@ -15,7 +16,6 @@ import (
 	"log"
 	"net/http"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -60,14 +60,23 @@ func main() {
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode),
 		csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
+	cert, err := tls.LoadX509KeyPair("cert.pem", "cert.key")
+	if err != nil {
+		log.Fatalln("Could not load certificates: " + err.Error())
+	}
+	tlsConfig := &tls.Config{
+		Certificates: []tls.Certificate{cert},
+		MinVersion:   tls.VersionTLS12,
+	}
 	var srv *http.Server
 	srv = &http.Server{
-		Addr:    ":" + strconv.Itoa(80),
-		Handler: CSRF(router),
+		Addr:      ":443",
+		Handler:   CSRF(router),
+		TLSConfig: tlsConfig,
 	}
-	err = srv.ListenAndServe()
+	err = srv.ListenAndServeTLS("", "")
 	if err != nil {
-		log.Println("Could not start server: " + err.Error())
+		log.Fatalln("Could not start server: " + err.Error())
 	}
 }
 

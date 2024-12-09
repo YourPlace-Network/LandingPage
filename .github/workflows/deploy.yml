@@ -24,12 +24,16 @@ jobs:
     - name: Build
       run: make build
 
-    - name: Create SSH key from secret
+    - name: Create keys and certificates
       run : |
         mkdir -p ~/.ssh
         echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ vars.DO_SSH_HOST }} >> ~/.ssh/known_hosts
+        echo "${{ secrets.CF_ORIGIN_KEY }}" > ~/cf_origin_key
+        chmod 600 ~/cf_origin_key
+        echo "${{ secrets.CF_ORIGIN_CERT }}" > ~/cf_origin_cert
+        chmod 600 ~/cf_origin_cert
 
     - name: Execute remote commands 1
       run: |
@@ -39,6 +43,8 @@ jobs:
     - name: Copy binary to droplet
       run: |
         scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding
+        scp -i ~/.ssh/id_rsa ~/cf_origin_cert ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.pem
+        scp -i ~/.ssh/id_rsa ~/cf_origin_key ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.key
 
     - name: Execute remote commands 2
       run: |
@@ -47,4 +53,7 @@ jobs:
           screen -dmS YourPlaceLanding /opt/YourPlace/YourPlaceLanding"
 
     - name: Clean up
-      run: rm -rf ~/.ssh
+      run: |
+        rm -rf ~/.ssh
+        rm -rf ~/cf_origin_cert
+        rm -rf ~/cf_origin_key

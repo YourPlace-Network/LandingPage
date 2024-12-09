@@ -80,6 +80,7 @@
 
 #row3 {
   height: 220px;
+  background-color: hsl(0, 0%, 19.2%, 0.9);
 }
 .testimonyContainer {
   width: 100%;
@@ -151,6 +152,7 @@
 #row4 {
   margin-top: 5px;
   margin-bottom: 50px;
+  background-color: hsl(0, 0%, 19.2%, 0.9);
 }
 .ctaDiv {
   text-align: center;
@@ -158,4 +160,37 @@
 }
 #ctaBtn {
   margin-top: 5px;
+}
+
+@media screen and (max-width: 575px) {
+  #row2 {
+    margin-bottom: 20px;
+  }
+  .featureDiv {
+    height: 100px;
+    margin: 0;
+  }
+  #row4 {
+    margin-top: 12.5em;
+  }
+  #row3 {
+    height: 0;
+  }
+  #row3 > div:first-child {
+    height: 0;
+  }
+  .testimonyContainer {
+    height: 100%;
+  }
+  .testimonial {
+    width: 95%;
+  }
+  .testimonyText {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .testimonyText {
+    font-size: 1rem;
+  }
 }
