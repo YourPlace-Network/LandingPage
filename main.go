@@ -46,6 +46,7 @@ func main() {
 	routes.NotFoundRoutes(router, title)
 	routes.HomeRoutes(router, title)
 	routes.AboutRoutes(router, title)
+	routes.DownloadRoutes(router, title)
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed,
 		csrf.SameSite(csrf.SameSiteStrictMode),

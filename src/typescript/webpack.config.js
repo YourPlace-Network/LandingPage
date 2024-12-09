@@ -8,6 +8,7 @@ module.exports = {
         home: './pages/home.ts',
         notFound: './pages/notFound.ts',
         about: './pages/about.ts',
+        download: './pages/download.ts',
     },
     mode: 'development',
     module: {

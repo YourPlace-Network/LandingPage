@@ -19,6 +19,16 @@ div {
   position: absolute;
   display: block;
 }
+#alphaImg {
+  width: 500px;
+  height: 70px;
+  transform: rotate(-30deg);
+  z-index: 150;
+  position: absolute;
+  margin-left: 6%;
+  margin-top: -10px;
+  opacity: 20%;
+}
 #fade {
   width: 100%;
   height: 40px;
@@ -108,4 +118,86 @@ div {
 .headlineProfileImg {
     width: 50px;
     height: 50px;
+}
+
+.featureDiv {
+  /*border: 4px solid map-get($colors, "text");*/
+  height: 150px;
+  text-align: center;
+  margin: 35px 20px 20px 20px;
+  background-color: hsl(0, 0%, 19.2%, 0.9);
+}
+.featureLogo {
+  color: map-get($colors, "text");
+}
+.featureText {
+  font-size: 22px;
+    color: map-get($colors, "text");
+}
+
+.testimonyContainer {
+  width: 100%;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+.testimonial {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+  width: 80%;
+}
+.testimonial.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.testimonial.exit {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.testimonyText {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+  color: map-get($colors, "text");
+  position: relative;
+  padding: 0 20px;
+  width: auto;
+}
+.testimonyText::before, .testimonyText::after {
+  content: '"';
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  color: map-get($colors, "quaternary");
+  position: absolute;
+  top: -20px;
+}
+.testimonyText::before {
+  left: -10px;
+}
+.testimonyText::after {
+  right: -10px;
+}
+.citation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.citationImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.citationAuthor {
+  font-weight: bold;
+  color: map-get($colors, "text");
 }

@@ -4,6 +4,7 @@
 <div class="container-fluid vh-100">
     <div class="row" id="row1">
         <img id="headlineImg" src="/static/image/headliner.jpg" alt="headline image">
+        <img id="alphaImg" src="/static/image/alpha.svg" alt="alpha">
         <div id="fade"></div>
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
@@ -32,6 +33,76 @@
         <div class="col-sm-1">
             {{template "htmlMenu" .}}
         </div>
+    </div>
+    <div class="row" id="row2">
+        <div class="col-sm-4">
+            <div class="featureDiv">
+                <i class="bi featureLogo bi-chat-square-heart fs-3"></i>
+                <p class="featureText">Own Your Data and Relationships</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="featureDiv">
+                <i class="bi featureLogo bi-code-square fs-3"></i>
+                <p class="featureText">Uncensorable and Open-Source</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="featureDiv">
+                <i class="bi featureLogo bi-broadcast fs-3"></i>
+                <p class="featureText">Automate Social and Amplify Your Voice</p>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="row3">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div id="testimonyContainer">
+                <div class="testimonial active">
+                    <p class="testimonyText">Just as I preserved the Union, YourPlace shall preserve our digital liberties</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/lincoln.png" class="citationImg">
+                        <span class="citationAuthor">Abraham Lincoln</span>
+                    </div>
+                </div>
+                <div class="testimonial active">
+                    <p class="testimonyText">YourPlace is a revolution in web3 social media</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/washington.jpg" class="citationImg">
+                        <span class="citationAuthor">George Washington</span>
+                    </div>
+                </div>
+                <div class="testimonial active">
+                    <p class="testimonyText">God has shown me a vision of this holy web3 application, where voices rise untethered toward heaven</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/joanofarc.png" class="citationImg">
+                        <span class="citationAuthor">Joan of Arc</span>
+                    </div>
+                </div>
+                <div class="testimonial active">
+                    <p class="testimonyText">I say to you, my fellow patriots, that this YourPlace is rather like electricity itself - invisible, powerful, and impossible for tyrants to bottle up</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/franklin.jpg" class="citationImg">
+                        <span class="citationAuthor">Benjamin Franklin</span>
+                    </div>
+                </div>
+                <div class="testimonial active">
+                    <p class="testimonyText">In this digital world of wealth and excess, I have found a simple truth in YourPlace, which serves the poor by giving voice to those who have been silenced</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/teresa.jpg" class="citationImg">
+                        <span class="citationAuthor">Mother Teresa</span>
+                    </div>
+                </div>
+                <div class="testimonial active">
+                    <p class="testimonyText">Non-violent resistance lives in each decentralized byte that YourPlace moves</p>
+                    <div class="citation">
+                        <img src="/static/image/testimonials/gandhi.png" class="citationImg">
+                        <span class="citationAuthor">Mahatma Gandhi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
     </div>
 </div>
 <input type="hidden" id="csrfToken" value="{{ .csrfToken }}">
