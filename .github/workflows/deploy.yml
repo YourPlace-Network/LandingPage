@@ -33,8 +33,8 @@ jobs:
 
     - name: Execute remote commands 1
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} '
-          mkdir -p /opt/YourPlace
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
+          "mkdir -p /opt/YourPlace"
 
     - name: Copy binary to droplet
       run: |
@@ -42,9 +42,9 @@ jobs:
 
     - name: Execute remote commands 2
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} '
-          screen -X -S YourPlaceLanding quit || true
-          screen -dmS /opt/YourPlace/YourPlaceLanding bash -c "YourPlaceLanding"
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
+          "screen -X -S YourPlaceLanding quit || true && \
+          screen -dmS /opt/YourPlace/YourPlaceLanding bash -c 'YourPlaceLanding'"
 
     - name: Clean up
       run: rm -rf ~/.ssh
