@@ -1,43 +1,44 @@
-name: Deploy to DigitalOcean
+name: Build and Deploy to DigitalOcean
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
-      # First, let's set up SSH keys for connecting to the droplet
-      - name: Install SSH key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.DROPLET_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
+    - name: Set up build environment
+      run: |
+        sudo apt-get update
+        sudo apt-get upgrade -y
+        sudo apt-get install -y build-essential make npm
 
-      # Upload the executable file
-      - name: Upload executable
-        run: |
-          scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding.exe root@${{ secrets.DROPLET_IP }}:/path/on/droplet/
+    - name: Install dependencies
+      run: make clean install
 
-      # Execute commands on the droplet
-      - name: Execute remote commands
-        run: |
-          ssh -i ~/.ssh/id_rsa root@${{ secrets.DROPLET_IP }} '
-            # Stop existing service if needed
-            systemctl stop your-service || true
-          
-            # Move the executable to final location
-            mv /path/on/droplet/your-executable.exe /opt/your-app/
-            chmod +x /opt/your-app/your-executable.exe
-          
-            # Start your service
-            systemctl start your-service
-          
-            # Additional commands as needed
-            echo "Deployment completed"
-          '
+    - name: Build
+      run: make build
+
+    - name: Create SSH key from secret
+      run : |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.DIGITALOCEAN_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.DIGITALOCEAN_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Copy binary to droplet
+      run: |
+        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ secrets.DIGITALOCEAN_USER }}@${{ secrets.DIGITALOCEAN_HOST }}:/opt/YourPlace/
+
+    - name: Execute remote commands
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ secrets.DIGITALOCEAN_USER }}@${{ secrets.DIGITALOCEAN_HOST }} '
+          screen -X -S YourPlaceLanding quit || true
+          screen -dmS /opt/YourPlace/YourPlaceLanding bash -c "YourPlaceLanding"
+
+    - name: Clean up
+      run: rm -rf ~/.ssh
