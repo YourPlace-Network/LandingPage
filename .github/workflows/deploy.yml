@@ -31,11 +31,16 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ vars.DO_SSH_HOST }} >> ~/.ssh/known_hosts
 
+    - name: Execute remote commands 1
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} '
+          mkdir -p /opt/YourPlace
+
     - name: Copy binary to droplet
       run: |
         scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding
 
-    - name: Execute remote commands
+    - name: Execute remote commands 2
       run: |
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} '
           screen -X -S YourPlaceLanding quit || true
