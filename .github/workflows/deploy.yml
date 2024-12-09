@@ -28,15 +28,15 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H "${{ secrets.DO_SSH_HOST }}" >> ~/.ssh/known_hosts
+        ssh-keyscan -H "${{ env.DO_SSH_HOST }}" >> ~/.ssh/known_hosts
 
     - name: Copy binary to droplet
       run: |
-        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ secrets.DO_SSH_USER }}@${{ secrets.DO_SSH_HOST }}:/opt/YourPlace/
+        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ env.DO_SSH_USER }}@${{ env.DO_SSH_HOST }}:/opt/YourPlace/
 
     - name: Execute remote commands
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ secrets.DO_SSH_USER }}@${{ secrets.DO_SSH_HOST }} '
+        ssh -i ~/.ssh/id_rsa ${{ env.DO_SSH_USER }}@${{ env.DO_SSH_HOST }} '
           screen -X -S YourPlaceLanding quit || true
           screen -dmS /opt/YourPlace/YourPlaceLanding bash -c "YourPlaceLanding"
 
