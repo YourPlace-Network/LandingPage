@@ -28,6 +28,7 @@ $modal-content-bg: map-get($colors, "tertiary");
 $component-active-color: map-get($colors, "text");
 $component-active-bg: map-get($colors, "quaternary");
 $form-check-input-border: 1px solid map-get($colors, "text");
+$form-select-indicator-color: map-get($colors, "text");
 $form-switch-color: map-get($colors, "text");
 $accordion-bg: map-get($colors, "tertiary");
 $accordion-button-active-bg: map-get($colors, "primary");
@@ -139,6 +140,26 @@ a:active {
 .flashFade {
   animation: flashFade 2s ease-in-out forwards;
   display: block;
+}
+
+@keyframes attention-burst {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  6% { transform: rotate(-3deg) scale(1); }
+  12% { transform: rotate(3deg) scale(1); }
+  18% { transform: rotate(-3deg) scale(1); }
+  24% { transform: rotate(0deg) scale(1); }
+  25%, 100% { transform: rotate(0deg) scale(1); }
+}
+.burst-shake-clickable {
+  animation: attention-burst 10s ease-in-out;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+}
+.burst-shake-clickable:hover {
+  animation: none;
+  transform: rotate(0deg) scale(1.1);
 }
 
 html, body {

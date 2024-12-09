@@ -1,7 +1,49 @@
 @import "../global.scss";
 
-.aboutDiv {
-  width: 100%;
+#recommendedDiv {
   background-color: hsl(0, 0%, 19.2%, 0.9);
-  padding: 10px;
+  height: 170px;
+  text-align: center;
+}
+#recommendedDiv > h4 {
+  margin-top: 5px;
+}
+#recommendedImg {
+  margin-top: 10px;
+  height: 75px;
+  width: 75px;
+}
+#recommendedText {
+  color: map-get($colors, "text");
+  margin-bottom: 20px;
+}
+
+#row3 {
+  background-color: hsl(0, 0%, 19.2%, 0.9);
+  height: 250px;
+  min-height: 250px;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+#row3 > h4 {
+  text-align: center;
+  padding-bottom: 25px;
+}
+.platformColumn, .platformDiv {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.platformImg {
+  height: 50px;
+  width: 50px;
+}
+.platformText {
+  color: map-get($colors, "text");
+}
+#winArch, #osxArch {
+  width: 110px;
+  margin-left: calc(50% - 55px);
+  cursor: pointer;
 }

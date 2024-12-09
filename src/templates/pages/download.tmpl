@@ -1,5 +1,8 @@
 {{template "header" .}}
 <body class="body">
+<script>
+    window.downloadJson = {{.downloads}};
+</script>
 <div class="container-fluid vh-100">
     <div class="row" id="row1">
         <img id="headlineImg" src="/static/image/headliner.jpg" alt="headline image">
@@ -17,6 +20,47 @@
         <div class="col-sm-1">
             {{template "htmlMenu" .}}
         </div>
+    </div>
+    <div class="row" id="row2">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" id="recommendedDiv">
+            <h4>Recommended:</h4>
+            <a href="/download" id="recommendedLink">
+                <div id="recommendedBtn" class="grow clickable">
+                    <img src="/static/image/windows.svg" alt="platform" id="recommendedImg">
+                    <p id="recommendedText">Microsoft Windows</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="row" id="row3">
+        <h4>Other Platforms:</h4>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5 platformColumn">
+            <div class="platformDiv align-items-center">
+                <div id="winDiv" class="platformBtn grow clickable">
+                    <img src="/static/image/windows.svg" alt="platform" class="platformImg">
+                    <p class="platformText">Microsoft Windows</p>
+                </div>
+                <select id="winArch" class="archSelect form-select form-select-sm" aria-label=".form-select-sm">
+                    <option value="amd64" selected>AMD-64</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-5 platformColumn">
+            <div class="platformDiv align-items-center">
+                <div id="osxDiv" class="platformBtn grow clickable">
+                    <img src="/static/image/apple.svg" alt="platform" class="platformImg">
+                    <p class="platformText">MacOS</p>
+                </div>
+                <select id="osxArch" class="archSelect form-select form-select-sm" aria-label=".form-select-sm">
+                    <option value="arm64" selected>ARM-64</option>
+                    <option value="amd64">AMD-64</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
     </div>
     <div class="row" id="rowFooter">
         <div class="col-sm-1"></div>
