@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
                 ShowDialogModal("An error occurred while subscribing to the newsletter. Please try again later.");
                 return;
             } else {
-                ShowDialogModal("Thank you for subscribing!");
+                ShowDialogModal("Thanks for subscribing!");
                 return;
             }
         } catch (error) {
