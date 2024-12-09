@@ -51,10 +51,10 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
           "screen -X -S YourPlaceLanding quit || true && \
-          screen -dmS YourPlaceLanding /opt/YourPlace/YourPlaceLanding"
+          screen -dmS YourPlaceLanding bash -c 'cd /opt/YourPlace/ && ./YourPlaceLanding'"
 
     - name: Clean up
       run: |
         rm -rf ~/.ssh
-        rm -rf ~/cf_origin_cert
-        rm -rf ~/cf_origin_key
+        rm -rf ~/cert.pem
+        rm -rf ~/cert.key
