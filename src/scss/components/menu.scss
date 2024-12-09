@@ -1,4 +1,4 @@
-@import "../global";
+@use "../global";
 
 #htmlMenu {
   position: fixed;
@@ -6,7 +6,7 @@
   right: 20px;
   height: 50px;
   width: 50px;
-  background: map-get($colors, "quaternary");
+  background: map-get(global.$colors, "quaternary");
   z-index: 10;
 }
 #htmlMenu i {
@@ -14,7 +14,7 @@
   font-size: 40px;
   margin-top: -1px;
   margin-left: -8px;
-  color: map-get($colors, "tertiary");
+  color: map-get(global.$colors, "tertiary");
 }
 #htmlMenuOffcanvas {
   max-width: 80%;
@@ -48,7 +48,7 @@
 .menuItemA:active,
 .menuItemA:visited {
   text-decoration: none;
-  color: map-get($colors, "text");
+  color: map-get(global.$colors, "text");
 }
 #menuLoginBtn {
   margin-left: 4em;

@@ -1,4 +1,4 @@
-@import "../global.scss";
+@use "../global.scss";
 
 #recommendedDiv {
   background-color: hsl(0, 0%, 19.2%, 0.9);
@@ -14,7 +14,7 @@
   width: 75px;
 }
 #recommendedText {
-  color: map-get($colors, "text");
+  color: map-get(global.$colors, "text");
   margin-bottom: 20px;
 }
 
@@ -40,7 +40,7 @@
   width: 50px;
 }
 .platformText {
-  color: map-get($colors, "text");
+  color: map-get(global.$colors, "text");
 }
 #winArch, #osxArch {
   width: 110px;

@@ -1,4 +1,4 @@
-@import "../global.scss";
+@use "../global.scss";
 
 #headlineConversationDiv {
   max-width: 500px;
@@ -71,11 +71,11 @@
   background-color: hsl(0, 0%, 19.2%, 0.9);
 }
 .featureLogo {
-  color: map-get($colors, "text");
+  color: map-get(global.$colors, "text");
 }
 .featureText {
   font-size: 22px;
-    color: map-get($colors, "text");
+    color: map-get(global.$colors, "text");
 }
 
 #row3 {
@@ -114,7 +114,7 @@
   font-size: 1.5rem;
   text-align: center;
   margin-bottom: 10px;
-  color: map-get($colors, "text");
+  color: map-get(global.$colors, "text");
   position: relative;
   padding: 0 20px;
   width: auto;
@@ -123,7 +123,7 @@
   content: '"';
   font-family: Georgia, serif;
   font-size: 4rem;
-  color: map-get($colors, "quaternary");
+  color: map-get(global.$colors, "quaternary");
   position: absolute;
   top: -20px;
 }
@@ -146,7 +146,7 @@
 }
 .citationAuthor {
   font-weight: bold;
-  color: map-get($colors, "text");
+  color: map-get(global.$colors, "text");
 }
 
 #row4 {
