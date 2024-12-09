@@ -44,7 +44,7 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
           "screen -X -S YourPlaceLanding quit || true && \
-          screen -dmS YourPlaceLanding bash -c '/opt/YourPlaceYourPlaceLanding'"
+          screen -dmS YourPlaceLanding /opt/YourPlace/YourPlaceLanding"
 
     - name: Clean up
       run: rm -rf ~/.ssh
