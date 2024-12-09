@@ -15,6 +15,7 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -60,26 +61,46 @@ func main() {
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode),
 		csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
-	cert, err := tls.LoadX509KeyPair("cert.pem", "cert.key")
-	if err != nil {
-		log.Fatalln("Could not load certificates: " + err.Error())
-	}
-	tlsConfig := &tls.Config{
-		Certificates: []tls.Certificate{cert},
-		MinVersion:   tls.VersionTLS12,
-	}
 	var srv *http.Server
-	srv = &http.Server{
-		Addr:      ":443",
-		Handler:   CSRF(router),
-		TLSConfig: tlsConfig,
-	}
-	err = srv.ListenAndServeTLS("", "")
-	if err != nil {
-		log.Fatalln("Could not start server: " + err.Error())
+	if ifFileExists("cert.pem") && ifFileExists("cert.key") {
+		cert, err := tls.LoadX509KeyPair("cert.pem", "cert.key")
+		if err != nil {
+			log.Fatalln("Could not load certificates: " + err.Error())
+		}
+		tlsConfig := &tls.Config{
+			Certificates: []tls.Certificate{cert},
+			MinVersion:   tls.VersionTLS12,
+		}
+		srv = &http.Server{
+			Addr:      ":443",
+			Handler:   CSRF(router),
+			TLSConfig: tlsConfig,
+		}
+		err = srv.ListenAndServeTLS("", "")
+		if err != nil {
+			log.Fatalln("Could not start server: " + err.Error())
+		}
+	} else {
+		srv = &http.Server{
+			Addr:    ":80",
+			Handler: CSRF(router),
+		}
+		err = srv.ListenAndServe()
+		if err != nil {
+			log.Fatalln("Could not start server: " + err.Error())
+		}
 	}
 }
 
+func ifFileExists(file string) bool {
+	_, err := os.Stat(file)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
+}
 func staticFS() http.FileSystem {
 	// https://github.com/gin-contrib/static/issues/19#issuecomment-963604838
 	sub, err := fs.Sub(wwwFS, "src/www")
