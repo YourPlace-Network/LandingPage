@@ -43,7 +43,7 @@ func main() {
 	}
 	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS subscribers (email TEXT PRIMARY KEY, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
-	gin.SetMode(gin.DebugMode)
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	LoadTemplates(router, templateFS, "src/templates/*tmpl")
 	router.Use(middleware.ContentTypeMiddleware())

@@ -30,10 +30,10 @@ jobs:
         echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ vars.DO_SSH_HOST }} >> ~/.ssh/known_hosts
-        echo "${{ secrets.CF_ORIGIN_KEY }}" > ~/cf_origin_key
-        chmod 600 ~/cf_origin_key
-        echo "${{ secrets.CF_ORIGIN_CERT }}" > ~/cf_origin_cert
-        chmod 600 ~/cf_origin_cert
+        echo "${{ secrets.CF_ORIGIN_KEY }}" > ~/cert.key
+        chmod 600 ~/cert.key
+        echo "${{ secrets.CF_ORIGIN_PEM }}" > ~/cert.pem
+        chmod 600 ~/cert.pem
 
     - name: Execute remote commands 1
       run: |
@@ -44,8 +44,8 @@ jobs:
     - name: Copy binary to droplet
       run: |
         scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding
-        scp -i ~/.ssh/id_rsa ~/cf_origin_cert ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.pem
-        scp -i ~/.ssh/id_rsa ~/cf_origin_key ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.key
+        scp -i ~/.ssh/id_rsa ~/cert.pem ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.pem
+        scp -i ~/.ssh/id_rsa ~/cert.key ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.key
 
     - name: Execute remote commands 2
       run: |
