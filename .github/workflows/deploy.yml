@@ -38,7 +38,8 @@ jobs:
     - name: Execute remote commands 1
       run: |
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
-          "mkdir -p /opt/YourPlace"
+          "mkdir -p /opt/YourPlace && \
+          screen -X -S YourPlaceLanding quit || true"
 
     - name: Copy binary to droplet
       run: |
