@@ -1,6 +1,7 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import "../../scss/pages/download.scss";
 import "../components/menu";
+import {ShowDialogModalHTML} from "../components/modalDialog";
 
 declare global { // Extend the window interface with public objects
     interface Window {
@@ -36,6 +37,7 @@ window.addEventListener("load", () => {
 
     async function main() {
         setRecommendedDownload();
+        ShowDialogModalHTML("YourPlace is early in its life and <b>many convenience features are not complete.</b><br><br>Only use this if you're comfortable with early-access software.");
     }
     function setRecommendedDownload() {
         const clientInfo = detectClientInfo();

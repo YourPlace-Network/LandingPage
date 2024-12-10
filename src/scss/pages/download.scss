@@ -47,3 +47,12 @@
   margin-left: calc(50% - 55px);
   cursor: pointer;
 }
+
+@media screen and (max-width: 576px) {
+  #rowFooter {
+    margin-top: 9em;
+  }
+  .platformColumn, .platformDiv {
+    height: 150px;
+  }
+}
