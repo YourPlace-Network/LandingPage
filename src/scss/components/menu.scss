@@ -4,14 +4,14 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   background: map-get(global.$colors, "quaternary");
   z-index: 10;
 }
 #htmlMenu i {
   display: inline-flex;
-  font-size: 40px;
+  font-size: 50px;
   margin-top: -1px;
   margin-left: -8px;
   color: map-get(global.$colors, "tertiary");
