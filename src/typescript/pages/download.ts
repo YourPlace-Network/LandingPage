@@ -37,7 +37,8 @@ window.addEventListener("load", () => {
 
     async function main() {
         setRecommendedDownload();
-        ShowDialogModalHTML("YourPlace is early in its life and <b>many convenience features are not complete.</b><br><br>Only use this if you're comfortable with early-access software.");
+        //ShowDialogModalHTML("YourPlace is early in its life and <b>many convenience features are not complete.</b><br><br>Only use this if you're comfortable with early-access software.");
+        ShowDialogModalHTML("YourPlace downloads are not yet live<br><br>Please return home and sign up for the newsletter to be notified when they are!");
     }
     function setRecommendedDownload() {
         const clientInfo = detectClientInfo();

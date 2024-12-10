@@ -63,12 +63,14 @@
     height: 50px;
 }
 
+#row2 {
+  background-color: hsl(0, 0%, 19.2%, 0.9);
+}
 .featureDiv {
   /*border: 4px solid map-get($colors, "text");*/
   height: 150px;
   text-align: center;
   margin: 35px 20px 20px 20px;
-  background-color: hsl(0, 0%, 19.2%, 0.9);
 }
 .featureLogo {
   color: map-get(global.$colors, "text");
