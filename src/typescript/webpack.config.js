@@ -38,6 +38,7 @@ module.exports = {
             },{
                 loader: 'sass-loader',  // Loads a SASS/SCSS file and compiles it to CSS
                 options: {
+                    api: "modern-compiler",
                     sourceMap: false,
                     sassOptions: {
                         outputStyle: "compressed",

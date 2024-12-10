@@ -22,8 +22,6 @@ interface DownloadLinks {
     }
 }
 
-
-
 window.addEventListener("load", () => {
     let DOM = {
         recommendedLink: document.getElementById("recommendedLink") as HTMLAnchorElement,
