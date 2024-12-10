@@ -25,7 +25,7 @@ interface DownloadLinks {
 
 window.addEventListener("load", () => {
     let DOM = {
-        recommendedLink: document.getElementById("recommendedLink") as HTMLAnchorElement,
+        recommendedDiv: document.getElementById("recommendedDiv") as HTMLDivElement,
         recommendedText: document.getElementById("recommendedText") as HTMLParagraphElement,
         recommendedImg: document.getElementById("recommendedImg") as HTMLImageElement,
         osxArch: document.getElementById("osxArch") as HTMLSelectElement,
@@ -43,7 +43,6 @@ window.addEventListener("load", () => {
         const clientInfo = detectClientInfo();
         if (clientInfo.os in downloadLinks) {
             if (clientInfo.architecture in downloadLinks[clientInfo.os]) {
-                DOM.recommendedLink.href = downloadLinks[clientInfo.os][clientInfo.architecture];
                 if (clientInfo.os === "osx") {
                     DOM.recommendedText.textContent = "MacOS";
                     DOM.recommendedImg.src = `/static/image/apple.svg`;
@@ -51,6 +50,34 @@ window.addEventListener("load", () => {
                     DOM.recommendedText.textContent = "Microsoft Windows"
                     DOM.recommendedImg.src = `/static/image/windows.svg`;
                 }
+            }
+        }
+    }
+    async function downloadRecommended() {
+        const clientInfo = detectClientInfo();
+        if (clientInfo.os in downloadLinks) {
+            if (clientInfo.architecture in downloadLinks[clientInfo.os]) {
+                try {
+                    const response = await fetch(downloadLinks[clientInfo.os][clientInfo.architecture]);
+                    if (!response.ok) {
+                        console.log("Failed to download file");
+                        return;
+                    }
+                    const blob = await response.blob();
+                    const downloadURL = window.URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = downloadURL;
+                    link.download = "YourPlace";
+                    link.style.display = "none";
+                    link.target = "_blank";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(downloadURL);
+                } catch (error) {
+                    console.error(error);
+                }
+
             }
         }
     }
@@ -98,6 +125,7 @@ window.addEventListener("load", () => {
             link.href = downloadURL;
             link.download = "YourPlace";
             link.style.display = "none";
+            link.target = "_blank";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -119,6 +147,7 @@ window.addEventListener("load", () => {
             link.href = downloadURL;
             link.download = "YourPlace.exe";
             link.style.display = "none";
+            link.target = "_blank";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -130,6 +159,7 @@ window.addEventListener("load", () => {
 
     DOM.osxDiv.addEventListener("click", downloadOSX);
     DOM.winDiv.addEventListener("click", downloadWindows);
+    DOM.recommendedDiv.addEventListener("click", downloadRecommended);
 
     main().then();
 });
