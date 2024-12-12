@@ -13,7 +13,7 @@ func Headers() gin.HandlerFunc {
 				"style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; "+
 				"media-src 'self' data:; "+
 				"font-src 'self' https://fonts.gstatic.com; "+
-				"connect-src 'self' data: https://* wss://*:*; "+ // this must wildcard all TLS connections to allow for P2P traffic
+				"connect-src 'self' data: https://* wss://*:* http://localhost:* ws://localhost:*; "+ // this must wildcard all TLS connections to allow for P2P traffic
 				"frame-src 'self'; ")
 		c.Header("X-Content-Options", "nosniff")
 		c.Header("Cache-Control", "max-age=604800")
