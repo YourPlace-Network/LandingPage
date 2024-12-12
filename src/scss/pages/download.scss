@@ -48,6 +48,14 @@
   cursor: pointer;
 }
 
+.ctaDiv {
+  text-align: center;
+  padding: 5px;
+}
+#ctaBtn {
+  margin-top: 5px;
+}
+
 @media screen and (max-width: 576px) {
   #rowFooter {
     margin-top: 9em;

@@ -10,6 +10,13 @@ declare global { // Extend the window interface with public objects
     }
 }
 
-window.addEventListener("load", () => {
+(function initialize() {
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", main);
+    } else {
+        main();
+    }
 
-});
+    function main() {}
+
+})();
