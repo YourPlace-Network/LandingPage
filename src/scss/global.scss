@@ -228,3 +228,8 @@ div {
   font-size: 10px;
   margin-bottom: 25px;
 }
+.disabled-link {
+  pointer-events: none;
+  cursor: not-allowed;
+  //opacity: 0.6;
+}
