@@ -50,7 +50,7 @@ interface DownloadLinks {
             // ShowDialogModalHTML("YourPlace is early in its life and <b>many convenience features are not complete.</b><br><br>Only use this if you're comfortable with early-access software.");
             ShowDialogModalHTML("<div id=\"ctaSubscribe\" class=\"ctaDiv\">" +
                 "YourPlace downloads are not yet live<br><br>" +
-                "<p id=\"subscribeText\">Subscribe to sign up for the Beta Test!</p>" +
+                "<p id=\"subscribeText\">Subscribe to be notified of the Alpha Test!</p>" +
                 "<input type=\"text\" id=\"emailInput\" class=\"form-control\" placeholder=\"Email Address\">" +
                 "<button id=\"ctaBtn\" class=\"btn btn-primary\">" +
                 "<i class=\"bi bi-envelope\"></i> Subscribe" +
