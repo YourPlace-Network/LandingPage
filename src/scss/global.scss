@@ -218,6 +218,16 @@ div {
   opacity: 50%;
   right: calc(50% - 20px);
 }
+@media screen and (max-width: 488px) {
+  #alphaImg {
+    right: calc(50% - 80px);
+  }
+}
+@media screen and (max-width: 368px) {
+    #alphaImg {
+        right: calc(50% - 120px);
+    }
+}
 #rowFooter {
   background-color: hsl(0, 0%, 19.2%, 0.9);
 }
