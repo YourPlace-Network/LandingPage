@@ -85,18 +85,21 @@
   background-color: hsl(0, 0%, 19.2%, 0.9);
   padding: 25px;
 }
-.testimonyContainer {
+#testimonyContainer {
   width: 100%;
   height: 300px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   padding-bottom: 20px;
+  max-width: 100vw;
+  left: 0;
+  right: 0;
 }
 .testimonial {
   position: absolute;
   box-sizing: border-box;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -104,14 +107,24 @@
   transform: translateX(100%);
   transition: all 0.5s ease-in-out;
   width: 80%;
-}
-.testimonial.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-.testimonial.exit {
-  opacity: 0;
-  transform: translateX(-100%);
+  visibility: hidden;
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    display: flex;
+  }
+  &.inactive {
+    display: none;
+    transform: none;
+    visibility: hidden;
+  }
+  &.exit {
+    opacity: 0;
+    transform: translateX(-100%);
+    visibility: visible;
+    display: flex;
+  }
 }
 .testimonyText {
   font-size: 1.5rem;
@@ -175,10 +188,12 @@
     margin: 0;
   }
   #row4 {
-    margin-top: 12.5em;
+    margin-top: 12em;
+    padding-top: 0;
   }
   #row3 {
     height: 0;
+    padding: 0;
   }
   #row3 > div:first-child {
     height: 0;
@@ -192,9 +207,31 @@
   .testimonyText {
     font-size: 1.2rem;
   }
+  .citationImg {
+    width: 50px;
+    height: 50px;
+  }
+  #ctaSubscribe {
+    margin-top: 25px;
+  }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 414px) {
   .testimonyText {
     font-size: 1rem;
+  }
+  #profile2Img {
+    position: relative;
+    float: right;
+    top: -160px;
+    right: 25px;
+  }
+  #profile1Img {
+    position: relative;
+    float: left;
+    left: 25px;
+    top: 0;
+  }
+  #headlineConversationDiv {
+    height: 270px;
   }
 }
