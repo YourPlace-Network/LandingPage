@@ -9,6 +9,7 @@ module.exports = {
         notFound: './pages/notFound.ts',
         about: './pages/about.ts',
         download: './pages/download.ts',
+        unsubscribe: './pages/unsubscribe.ts',
     },
     mode: 'development',
     module: {

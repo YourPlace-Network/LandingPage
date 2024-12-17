@@ -47,6 +47,7 @@ func main() {
 		log.Fatalln("Could not ping database: " + err.Error())
 	}
 	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS subscribers (email TEXT PRIMARY KEY, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS unsubscribers (email TEXT PRIMARY KEY, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
 	if os.Getenv("GIN_MODE") == "debug" {
 		gin.SetMode(gin.DebugMode)

@@ -24,11 +24,7 @@ interface DownloadLinks {
 }
 
 (function initialize() {
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", main);
-    } else {
-        main();
-    }
+    if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", main);} else {main();}
 
     function main() {
         let DOM = {

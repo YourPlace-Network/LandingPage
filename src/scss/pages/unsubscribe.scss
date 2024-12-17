@@ -1,0 +1,16 @@
+@use "../global.scss";
+
+#unsubscribeDiv {
+  margin-bottom: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: hsl(0, 0%, 19.2%, 0.9);
+  text-align: center;
+}
+#rowFooter {
+  padding-top: 25px;
+  height: 100%;
+}
+.modal-body {
+  text-align: center;
+}

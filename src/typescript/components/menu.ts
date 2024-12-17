@@ -3,11 +3,7 @@ import "../../scss/components/menu.scss";
 import {YourPlaceServerDetector} from "../util/network";
 
 (function initialize() {
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", main);
-    } else {
-        main();
-    }
+    if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", main);} else {main();}
 
     function main() {
         let DOM = {
