@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      HOST: "yourplace.network"
 
     steps:
     - uses: actions/checkout@v3
@@ -54,8 +56,6 @@ jobs:
           screen -dmS YourPlaceLanding bash -c 'cd /opt/YourPlace/ && ./YourPlaceLanding'"
 
     - name: Purge Cloudflare Cache
-      env:
-        HOST: "yourplace.network"
       run: |
         curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
         -H "Content-Type: application/json" \
