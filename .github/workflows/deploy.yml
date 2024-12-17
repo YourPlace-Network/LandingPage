@@ -53,6 +53,19 @@ jobs:
           "screen -X -S YourPlaceLanding quit || true && \
           screen -dmS YourPlaceLanding bash -c 'cd /opt/YourPlace/ && ./YourPlaceLanding'"
 
+    - name: Purge Cloudflare Cache
+      env:
+        CF_EMAIL: ${{ secrets.CF_EMAIL }}
+        CF_TOKEN: ${{ secrets.CF_TOKEN }}
+        CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        HOST: "yourplace.network"
+      run: |
+        curl -X GET "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
+        -H "Content-Type: application/json" \
+        -H "X-Auth_Email: ${CF_EMAIL}" \
+        -H "X-Auth-Key: ${CF_TOKEN}" \
+        --data "{\"hosts\":[\"${HOST}\"]}"
+
     - name: Clean up
       run: |
         rm -rf ~/.ssh
