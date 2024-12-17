@@ -59,7 +59,7 @@ jobs:
       run: |
         curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
         -H "Content-Type: application/json" \
-        -H "X-Auth_Email: ${{ secrets.CF_EMAIL }}" \
+        -H "X-Auth-Email: ${{ secrets.CF_EMAIL }}" \
         -H "X-Auth-Key: ${{ secrets.CF_TOKEN }}" \
         -d "{\"hosts\":[\"$HOST\"]}"
 
