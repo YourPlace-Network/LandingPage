@@ -67,6 +67,7 @@ func main() {
 	routes.HomeRoutes(router, title, db, favicon)
 	routes.AboutRoutes(router, title)
 	routes.DownloadRoutes(router, title)
+	routes.FAQRoutes(router, title)
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode), csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
 	var srv *http.Server
