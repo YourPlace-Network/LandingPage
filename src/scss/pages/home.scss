@@ -82,9 +82,9 @@
 }
 
 #row3 {
-  height: 250px;
+  height: 16em;
   background-color: hsl(0, 0%, 19.2%, 0.9);
-  padding: 25px;
+  padding: 2.2em;
 }
 #testimonyContainer {
   width: 100%;
@@ -133,7 +133,7 @@
   margin-bottom: 1em;
   color: map.get(global.$colors, "text");
   position: relative;
-  padding: 0 1em;
+  padding: 0 1em 0 .5em;
   width: auto;
 }
 .testimonyText::before, .testimonyText::after {
