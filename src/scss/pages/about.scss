@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../global.scss";
 
 .aboutDiv {
@@ -24,4 +25,7 @@
   display: block;
   float: right;
   margin-top: -10px;
+}
+#pronounceBtn {
+  padding-left: .1em;
 }

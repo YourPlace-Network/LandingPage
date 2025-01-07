@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../global.scss";
 
 #headlineConversationDiv {
@@ -67,17 +68,17 @@
   background-color: hsl(0, 0%, 19.2%, 0.9);
 }
 .featureDiv {
-  /*border: 4px solid map-get($colors, "text");*/
+  /*border: 4px solid .$colors, "text");*/
   height: 150px;
   text-align: center;
   margin: 35px 20px 20px 20px;
 }
 .featureLogo {
-  color: map-get(global.$colors, "text");
+  color: map.get(global.$colors, "text");
 }
 .featureText {
   font-size: 22px;
-    color: map-get(global.$colors, "text");
+    color: map.get(global.$colors, "text");
 }
 
 #row3 {
@@ -129,17 +130,17 @@
 .testimonyText {
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 10px;
-  color: map-get(global.$colors, "text");
+  margin-bottom: 1em;
+  color: map.get(global.$colors, "text");
   position: relative;
-  padding: 0 20px;
+  padding: 0 1em;
   width: auto;
 }
 .testimonyText::before, .testimonyText::after {
   content: '"';
   font-family: Georgia, serif;
   font-size: 4rem;
-  color: map-get(global.$colors, "quaternary");
+  color: map.get(global.$colors, "quaternary");
   position: absolute;
   top: -20px;
   padding-left: 5px;
@@ -164,7 +165,7 @@
 }
 .citationAuthor {
   font-weight: bold;
-  color: map-get(global.$colors, "text");
+  color: map.get(global.$colors, "text");
 }
 
 #row4 {

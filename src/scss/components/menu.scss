@@ -1,20 +1,20 @@
+@use "sass:map";
 @use "../global";
 
 #htmlMenu {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  height: 60px;
-  width: 60px;
-  background: map-get(global.$colors, "quaternary");
-  z-index: 10;
+  top: 1em;
+  right: 1em;
+  height: 3.7em;
+  width: 3.7em;
+  background: map.get(global.$colors, "quaternary");
+  z-index: 100;
 }
 #htmlMenu i {
   display: inline-flex;
-  font-size: 50px;
-  margin-top: -1px;
-  margin-left: -8px;
-  color: map-get(global.$colors, "tertiary");
+  font-size: 3em;
+  margin-left: -.15em;
+  color: map.get(global.$colors, "tertiary");
 }
 #htmlMenuOffcanvas {
   max-width: 80%;
@@ -40,15 +40,15 @@
   display: block;
   width: 100%;
   min-width: 80%;
-  height: 50px;
-  padding-left: 10px;
+  height: 2.5em;
+  padding-left: .5em;
 }
 .menuItemA,
 .menuItemA:hover,
 .menuItemA:active,
 .menuItemA:visited {
   text-decoration: none;
-  color: map-get(global.$colors, "text");
+  color: map.get(global.$colors, "text");
 }
 #menuLoginBtn {
   margin-left: 4em;

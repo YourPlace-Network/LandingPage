@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../global.scss";
 
 #recommendedDiv {
@@ -14,7 +15,7 @@
   width: 75px;
 }
 #recommendedText {
-  color: map-get(global.$colors, "text");
+  color: map.get(global.$colors, "text");
   margin-bottom: 20px;
 }
 
@@ -40,7 +41,7 @@
   width: 50px;
 }
 .platformText {
-  color: map-get(global.$colors, "text");
+  color: map.get(global.$colors, "text");
 }
 #winArch, #osxArch {
   width: 120px;

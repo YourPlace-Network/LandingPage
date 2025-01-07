@@ -13,6 +13,15 @@ declare global { // Extend the window interface with public objects
 (function initialize() {
     if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", main);} else {main();}
 
-    function main() {}
+    function main() {
+        const DOM = {
+            pronounceBtn: document.getElementById("pronounceBtn")! as HTMLButtonElement,
+        };
+
+        DOM.pronounceBtn.addEventListener("click", () => {
+            const audio = new Audio("/static/audio/nops.mp3");
+            audio.play().then();
+        });
+    }
 
 })();
