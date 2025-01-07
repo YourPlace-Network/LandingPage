@@ -1,6 +1,10 @@
 @use "sass:map";
-@use "../global";
+@use "../global.scss";
 
+body.modal-open {
+  overflow-y: scroll !important;
+  padding-right: 0 !important;
+}
 #htmlMenu {
   position: fixed;
   top: 1em;
@@ -30,7 +34,6 @@
   position: relative;
   justify-content: center;
 }
-
 .offcanvas-body {
   width: 100%;
   flex-direction: column;

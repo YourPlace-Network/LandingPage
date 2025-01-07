@@ -150,26 +150,6 @@ a:active {
   display: block;
 }
 
-@keyframes attention-burst {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  6% { transform: rotate(-3deg) scale(1); }
-  12% { transform: rotate(3deg) scale(1); }
-  18% { transform: rotate(-3deg) scale(1); }
-  24% { transform: rotate(0deg) scale(1); }
-  25%, 100% { transform: rotate(0deg) scale(1); }
-}
-.burst-shake-clickable {
-  animation: attention-burst 10s ease-in-out;
-  animation-iteration-count: infinite;
-  transform-origin: center;
-  transition: transform 0.2s ease-out;
-  cursor: pointer;
-}
-.burst-shake-clickable:hover {
-  animation: none;
-  transform: rotate(0deg) scale(1.1);
-}
-
 /* Landing Page Specific Global Styling */
 #headlineImg {
   width: 100%;
