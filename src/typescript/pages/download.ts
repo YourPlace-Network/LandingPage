@@ -12,10 +12,6 @@ declare global { // Extend the window interface with public objects
     }
 }
 
-interface ClientInfo {
-    os: string;
-    userAgent: string;
-}
 interface DownloadLinks {
     [key: string]: string;
 }
@@ -53,46 +49,28 @@ interface DownloadLinks {
             (document.getElementById("ctaBtn") as HTMLButtonElement).addEventListener("click", subscribe);
         }
         function setRecommendedDownload() {
-            const clientInfo = detectClientInfo();
-            if (clientInfo.os in downloadLinks) {
-                if (clientInfo.os === "osx") {
+            const clientOS = detectClientInfo();
+            if (clientOS in downloadLinks) {
+                if (clientOS === "osx") {
                     DOM.recommendedText.textContent = "MacOS";
                     DOM.recommendedImg.src = `/static/image/apple.svg`;
-                } else if (clientInfo.os === "windows") {
+                } else if (clientOS === "windows") {
                     DOM.recommendedText.textContent = "Microsoft Windows"
                     DOM.recommendedImg.src = `/static/image/windows.svg`;
                 }
             }
         }
-        async function downloadRecommended() {
+        function downloadRecommended() {
             const clientInfo = detectClientInfo();
-            if (clientInfo.os in downloadLinks) {
-                try {
-                    const response = await fetch(downloadLinks[clientInfo.os]);
-                    if (!response.ok) {
-                        console.log("Failed to download file");
-                        return;
-                    }
-                    const blob = await response.blob();
-                    const downloadURL = window.URL.createObjectURL(blob);
-                    const link = document.createElement("a");
-                    link.href = downloadURL;
-                    link.download = "YourPlace";
-                    link.style.display = "none";
-                    link.target = "_blank";
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    window.URL.revokeObjectURL(downloadURL);
-                } catch (error) {
-                    console.error(error);
-                }
+            if (clientInfo == "osx") {
+                downloadOSX();
+            } else if (clientInfo == "windows") {
+                downloadWindows();
             }
         }
-        function detectClientInfo(): ClientInfo {
+        function detectClientInfo(): string {
             const ua = navigator.userAgent;
             let os = "unknown";
-            let architecture = "unknown";
             if (ua.indexOf("Win") != -1) {
                 os = "windows";
             } else if (ua.indexOf("Mac") != -1) {
@@ -104,24 +82,10 @@ interface DownloadLinks {
             } else if (ua.indexOf("iOS") != -1 || ua.indexOf("iPhone") != -1 || ua.indexOf("iPad") != -1) {
                 os = "ios";
             }
-            if (ua.indexOf("x64") !== -1 || ua.indexOf("WOW64") !== -1 || ua.indexOf("x86_64") !== -1) {
-                architecture = "amd64";
-            } else if (ua.indexOf("x86") !== -1 || ua.indexOf("i686") !== -1) {
-                architecture = "amd86";
-            } else if (ua.indexOf("arm") !== -1 || ua.indexOf("ARM") !== -1) {
-                architecture = "arm64";
-            } else if (ua.indexOf("aarch64") !== -1) {
-                architecture = "arm64";
-            }
-            if (os === "MacOS" && architecture === "Unknown") {
-                if (/Mac OS X/.test(ua)) {
-                    architecture = "arm64"; // Modern Macs are likely to be ARM-based
-                }
-            }
-            console.log(`Detected OS: ${os}, Architecture: ${architecture}`);
-            return {os, userAgent: ua};
+            console.log("Detected OS: " + os);
+            return os;
         }
-        async function downloadOSX() {
+        function downloadOSX() {
             const link = document.createElement('a');
             link.href = downloadLinks["osx"];
             link.setAttribute("download", "");
@@ -130,7 +94,7 @@ interface DownloadLinks {
             link.click();
             document.body.removeChild(link);
         }
-        async function downloadWindows() {
+        function downloadWindows() {
             const link = document.createElement('a');
             link.href = downloadLinks["windows"];
             link.setAttribute("download", "");
@@ -154,11 +118,6 @@ interface DownloadLinks {
             }, 1000);
         }
         async function subscribe() {
-            let DOM = {
-                ctaBtn: document.getElementById("ctaBtn") as HTMLButtonElement,
-                csrfToken: (document.getElementById("csrfToken") as HTMLInputElement).value,
-                email: document.getElementById("emailInput") as HTMLInputElement,
-            }
             try {
                 let response = await fetch("/subscribe", {
                     method: "POST",
