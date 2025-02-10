@@ -36,8 +36,8 @@ interface DownloadLinks {
 
         async function init() {
             setRecommendedDownload();
-            // ShowDialogModalHTML("YourPlace is early in its life and <b>many convenience features are not complete.</b><br><br>Only use this if you're comfortable with early-access software.");
-            ShowDialogModalHTML("<div id=\"ctaSubscribe\" class=\"ctaDiv\">" +
+            ShowDialogModalHTML("YourPlace is early in its life and <u>many features are not complete</u><br><br>Only use this if you're comfortable testing early-access software");
+            /*ShowDialogModalHTML("<div id=\"ctaSubscribe\" class=\"ctaDiv\">" +
                 "YourPlace downloads are not yet live<br><br>" +
                 "<p id=\"subscribeText\">Subscribe to be notified of the Alpha Test!</p>" +
                 "<input type=\"text\" id=\"emailInput\" class=\"form-control\" placeholder=\"Email Address\">" +
@@ -45,8 +45,8 @@ interface DownloadLinks {
                 "<i class=\"bi bi-envelope\"></i> Subscribe" +
                 "</button>" +
                 "</div>" +
-                "</b>");
-            (document.getElementById("ctaBtn") as HTMLButtonElement).addEventListener("click", subscribe);
+                "</b>");*/
+            //(document.getElementById("ctaBtn") as HTMLButtonElement).addEventListener("click", subscribe);
         }
         function setRecommendedDownload() {
             const clientOS = detectClientInfo();

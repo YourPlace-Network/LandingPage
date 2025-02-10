@@ -43,10 +43,11 @@
 .platformText {
   color: map.get(global.$colors, "text");
 }
-#winArch, #osxArch {
-  width: 120px;
-  margin-left: calc(50% - 55px);
-  cursor: pointer;
+#winDiv {
+  margin-left: 15em;
+}
+#osxDiv {
+  margin-right: 15em;
 }
 
 .ctaDiv {
