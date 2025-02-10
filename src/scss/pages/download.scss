@@ -11,8 +11,8 @@
 }
 #recommendedImg {
   margin-top: 10px;
-  height: 75px;
-  width: 75px;
+  height: 5em;
+  width: 5em;
 }
 #recommendedText {
   color: map.get(global.$colors, "text");
@@ -42,12 +42,6 @@
 }
 .platformText {
   color: map.get(global.$colors, "text");
-}
-#winDiv {
-  margin-left: 15em;
-}
-#osxDiv {
-  margin-right: 15em;
 }
 
 .ctaDiv {
