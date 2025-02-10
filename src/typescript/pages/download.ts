@@ -122,48 +122,22 @@ interface DownloadLinks {
             return {os, userAgent: ua};
         }
         async function downloadOSX() {
-            try {
-                const response = await fetch(downloadLinks["osx"]);
-                if (!response.ok) {
-                    console.log("Failed to download file");
-                    return;
-                }
-                const blob = await response.blob();
-                const downloadURL = window.URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = downloadURL;
-                link.download = "YourPlace-" + downloadLinks["version"] + ".pkg";
-                link.style.display = "none";
-                link.target = "_blank";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                window.URL.revokeObjectURL(downloadURL);
-            } catch (error) {
-                console.error(error);
-            }
+            const link = document.createElement('a');
+            link.href = downloadLinks["osx"];
+            link.setAttribute("download", "");
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
         async function downloadWindows() {
-            try {
-                const response = await fetch(downloadLinks["windows"]);
-                if (!response.ok) {
-                    console.log("Failed to download file");
-                    return;
-                }
-                const blob = await response.blob();
-                const downloadURL = window.URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = downloadURL;
-                link.download = "YourPlace-" + downloadLinks["version"] + ".exe";
-                link.style.display = "none";
-                link.target = "_blank";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                window.URL.revokeObjectURL(downloadURL);
-            } catch (error) {
-                console.error(error);
-            }
+            const link = document.createElement('a');
+            link.href = downloadLinks["windows"];
+            link.setAttribute("download", "");
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
         function countdownAndRedirect(): void {
             let secondsLeft = 5;

@@ -9,7 +9,7 @@ import (
 )
 
 func DownloadRoutes(router *gin.Engine, title string) {
-	currentVersion := "0.1.0"
+	currentVersion := "0.1.0" // todo, don't hardcode this
 	bucket := "https://yourplace-downloads.nyc3.digitaloceanspaces.com"
 	downloads := map[string]string{
 		"version": currentVersion,
@@ -27,7 +27,6 @@ func DownloadRoutes(router *gin.Engine, title string) {
 			"downloads": template.JS(downloadJson), // use template.JS to safely inject JavaScript
 		})
 	})
-
 	router.GET("/version", func(c *gin.Context) {
 		c.SecureJSON(http.StatusOK, gin.H{"version": currentVersion})
 	})
