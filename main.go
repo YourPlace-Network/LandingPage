@@ -55,7 +55,7 @@ func main() {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	router := gin.Default()
-	LoadTemplates(router, templateFS, "src/templates/*tmpl")
+	LoadTemplates(router, templateFS, "src/templates/*gohtml")
 	router.Use(middleware.ContentTypeMiddleware())
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())

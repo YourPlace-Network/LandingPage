@@ -7,7 +7,7 @@ import (
 
 func NotFoundRoutes(router *gin.Engine, title string) {
 	router.NoRoute(func(c *gin.Context) {
-		c.HTML(http.StatusNotFound, "src/templates/pages/notFound.tmpl", gin.H{
+		c.HTML(http.StatusNotFound, "src/templates/pages/notFound.gohtml", gin.H{
 			"title":    title,
 			"pageName": "notFound",
 		})

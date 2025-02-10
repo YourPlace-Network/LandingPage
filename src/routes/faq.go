@@ -7,7 +7,7 @@ import (
 
 func FAQRoutes(router *gin.Engine, title string) {
 	router.GET("/faq", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "src/templates/pages/faq.tmpl", gin.H{
+		c.HTML(http.StatusOK, "src/templates/pages/faq.gohtml", gin.H{
 			"title":    title,
 			"pageName": "faq",
 		})

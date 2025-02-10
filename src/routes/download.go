@@ -11,23 +11,16 @@ import (
 func DownloadRoutes(router *gin.Engine, title string) {
 	currentVersion := "0.1.0"
 	bucket := "https://yourplace-downloads.nyc3.digitaloceanspaces.com"
-	downloads := map[string]map[string]string{
-		"version": {
-			"latest": currentVersion,
-		},
-		"windows": {
-			"amd64": bucket + "/win-amd64/" + currentVersion + "/YourPlace.exe",
-		},
-		"osx": {
-			"amd64": bucket + "/osx-amd64/" + currentVersion + "/YourPlace",
-			"arm64": bucket + "/osx-arm64/" + currentVersion + "/YourPlace",
-		},
+	downloads := map[string]string{
+		"version": currentVersion,
+		"windows": bucket + "/windows/YourPlace-" + currentVersion + ".exe",
+		"osx":     bucket + "/osx/YourPlace-" + currentVersion + ".pkg",
 	}
 	downloadJson, _ := json.Marshal(downloads)
 
 	router.GET("/download", func(c *gin.Context) {
 		token := csrf.Token(c.Request)
-		c.HTML(http.StatusOK, "src/templates/pages/download.tmpl", gin.H{
+		c.HTML(http.StatusOK, "src/templates/pages/download.gohtml", gin.H{
 			"title":     title,
 			"pageName":  "download",
 			"csrfToken": token,
