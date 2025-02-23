@@ -39,7 +39,7 @@ jobs:
 
     - name: Kill screen
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@{{ vars.DO_SSH_HOST }} << 'EOF'
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} << 'EOF'
           screen ls | grep -o '[0-9]*\.[^ ]*' | while read -r session; do
             screen -S "$session" -X quit
           done || true
