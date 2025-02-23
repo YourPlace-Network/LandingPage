@@ -42,7 +42,7 @@ jobs:
         scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding.new
         scp -i ~/.ssh/id_rsa ~/cert.pem ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.pem
         scp -i ~/.ssh/id_rsa ~/cert.key ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.key
-        scp -i ~/.ssh/id_rsa ./resources/yourplace.service $${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/tmp/yourplace.service
+        scp -i ~/.ssh/id_rsa ./resources/yourplace.service ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/tmp/yourplace.service
         
     - name: Deploy and restart service
       run: |
