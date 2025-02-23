@@ -37,6 +37,14 @@ jobs:
         echo "${{ secrets.CF_ORIGIN_PEM }}" > ~/cert.pem
         chmod 600 ~/cert.pem
 
+    - name: Kill screen
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@{{ vars.DO_SSH_HOST }} << 'EOF'
+          screen ls | grep -o '[0-9]*\.[^ ]*' | while read -r session; do
+            screen -S "$session" -X quit
+          done || true
+        EOF
+
     - name: Copy files to droplet
       run: |
         scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding.new
