@@ -71,7 +71,7 @@ jobs:
         -H "Content-Type: application/json" \
         -H "X-Auth-Email: ${{ secrets.CF_EMAIL }}" \
         -H "X-Auth-Key: ${{ secrets.CF_TOKEN }}" \
-        -d "{\"hosts\":[\"$HOST\"]}"
+        -d "{\"purge_everything\":true}"
 
     - name: Clean up
       run: |
