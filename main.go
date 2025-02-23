@@ -48,12 +48,8 @@ func main() {
 	}
 	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS subscribers (email TEXT PRIMARY KEY, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS unsubscribers (email TEXT PRIMARY KEY, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+	_, _ = db.Exec("CREATE TABLE IF NOT EXISTS downloads (address TEXT, version TEXT, os TEXT, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
-	if os.Getenv("GIN_MODE") == "debug" {
-		gin.SetMode(gin.DebugMode)
-	} else {
-		gin.SetMode(gin.ReleaseMode)
-	}
 	router := gin.Default()
 	LoadTemplates(router, templateFS, "src/templates/*gohtml")
 	router.Use(middleware.ContentTypeMiddleware())
@@ -66,7 +62,7 @@ func main() {
 	routes.NotFoundRoutes(router, title)
 	routes.HomeRoutes(router, title, db, favicon)
 	routes.AboutRoutes(router, title)
-	routes.DownloadRoutes(router, title)
+	routes.DownloadRoutes(router, title, db)
 	routes.FAQRoutes(router, title)
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode), csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))

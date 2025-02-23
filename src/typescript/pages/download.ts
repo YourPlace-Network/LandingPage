@@ -86,6 +86,7 @@ interface DownloadLinks {
             return os;
         }
         function downloadOSX() {
+            fetch("/download/record?os=osx&version=" + encodeURI(downloadLinks["version"])).then(); // Record download
             const link = document.createElement('a');
             link.href = downloadLinks["osx"];
             link.setAttribute("download", "");
@@ -95,6 +96,7 @@ interface DownloadLinks {
             document.body.removeChild(link);
         }
         function downloadWindows() {
+            fetch("/download/record?os=windows&version=" + encodeURI(downloadLinks["version"])).then(); // Record download
             const link = document.createElement('a');
             link.href = downloadLinks["windows"];
             link.setAttribute("download", "");
@@ -102,47 +104,6 @@ interface DownloadLinks {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        }
-        function countdownAndRedirect(): void {
-            let secondsLeft = 5;
-            const countdownElement = document.createElement('div');
-            document.body.appendChild(countdownElement);
-            const countdownInterval = setInterval(() => {
-                if (secondsLeft > 0) {
-                    countdownElement.textContent = `Redirecting in ${secondsLeft} seconds...`;
-                    secondsLeft--;
-                } else {
-                    clearInterval(countdownInterval);
-                    window.location.href = '/';
-                }
-            }, 1000);
-        }
-        async function subscribe() {
-            try {
-                let response = await fetch("/subscribe", {
-                    method: "POST",
-                    cache: "no-store",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "X-CSRF-Token": DOM.csrfToken,
-                    },
-                    body: JSON.stringify({"email": DOM.email.value})
-                });
-                if (!response.ok) {
-                    ShowDialogModal("An error occurred while subscribing to the newsletter. Returning you hom.");
-                    countdownAndRedirect();
-                    return;
-                } else {
-                    ShowDialogModal("Thanks for subscribing!");
-                    countdownAndRedirect();
-                    return;
-                }
-            } catch (error) {
-                ShowDialogModal("An error occurred while subscribing to the newsletter. Returning you home.");
-                countdownAndRedirect();
-                return;
-            }
         }
 
         DOM.osxDiv.addEventListener("click", downloadOSX);

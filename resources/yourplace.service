@@ -1,0 +1,15 @@
+[Unit]
+Description=YourPlace Landing Page Server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/YourPlace
+ExecStart=/opt/YourPlace/YourPlaceLanding
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/yourplace.log
+StandardError=append:/var/log/yourplace.error.log
+
+[Install]
+WantedBy=multi-user.target

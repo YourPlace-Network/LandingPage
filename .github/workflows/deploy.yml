@@ -37,23 +37,25 @@ jobs:
         echo "${{ secrets.CF_ORIGIN_PEM }}" > ~/cert.pem
         chmod 600 ~/cert.pem
 
-    - name: Execute remote commands 1
+    - name: Copy files to droplet
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
-          "mkdir -p /opt/YourPlace && \
-          screen -X -S YourPlaceLanding quit || true"
-
-    - name: Copy binary to droplet
-      run: |
-        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding
+        scp -i ~/.ssh/id_rsa ./target/YourPlaceLanding ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/YourPlaceLanding.new
         scp -i ~/.ssh/id_rsa ~/cert.pem ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.pem
         scp -i ~/.ssh/id_rsa ~/cert.key ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/opt/YourPlace/cert.key
-
-    - name: Execute remote commands 2
+        scp -i ~/.ssh/id_rsa ./resources/yourplace.service $${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/tmp/yourplace.service
+        
+    - name: Deploy and restart service
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} \
-          "screen -X -S YourPlaceLanding quit || true && \
-          screen -dmS YourPlaceLanding bash -c 'cd /opt/YourPlace/ && ./YourPlaceLanding'"
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }} @${{ vars.DO_SSH_HOST }} << 'EOF'
+          mkdir -p /opt/YourPlace
+          mv /tmp/yourplace.service /etc/systemd/system/yourplace.service
+          systemctl daemon-reload
+          systemctl stop yourplace
+          mv /opt/YourPlace/YourPlaceLanding.new /opt/YourPlace/YourPlaceLanding
+          chmod +x /opt/YourPlace/YourPlaceLanding
+          systemctl start yourplace
+          systemctl enable yourplace
+        EOF
 
     - name: Purge Cloudflare Cache
       run: |
