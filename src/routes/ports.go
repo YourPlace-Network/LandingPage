@@ -28,8 +28,8 @@ func PortRoutes(router *gin.Engine) {
 		}
 
 		c.SecureJSON(http.StatusOK, gin.H{
-			"4001":  isPortOpen(clientIP, 4001),
-			"42424": isPortOpen(clientIP, 42424),
+			"port_4001":  isPortOpen(clientIP, 4001),
+			"port_42424": isPortOpen(clientIP, 42424),
 		})
 	})
 }
