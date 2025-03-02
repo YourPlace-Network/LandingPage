@@ -64,6 +64,7 @@ func main() {
 	routes.AboutRoutes(router, title)
 	routes.DownloadRoutes(router, title, db)
 	routes.FAQRoutes(router, title)
+	routes.PortRoutes(router)
 	// --- Start Web Server Loop --- //
 	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode), csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
 	var srv *http.Server
@@ -82,15 +83,6 @@ func main() {
 			TLSConfig: tlsConfig,
 		}
 		err = srv.ListenAndServeTLS("", "")
-		if err != nil {
-			log.Fatalln("Could not start server: " + err.Error())
-		}
-	} else {
-		srv = &http.Server{
-			Addr:    ":80",
-			Handler: CSRF(router),
-		}
-		err = srv.ListenAndServe()
 		if err != nil {
 			log.Fatalln("Could not start server: " + err.Error())
 		}
