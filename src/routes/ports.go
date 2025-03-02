@@ -23,9 +23,7 @@ func PortRoutes(router *gin.Engine) {
 		clientIP := c.ClientIP()
 
 		if !limiter.allow(clientIP) {
-			c.JSON(http.StatusTooManyRequests, gin.H{
-				"error": "rate limit exceeded - max 1 per second per IP",
-			})
+			c.JSON(http.StatusTooManyRequests, gin.H{"error": "rate limit exceeded - max 1 per second per IP"})
 			return
 		}
 
