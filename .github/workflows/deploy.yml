@@ -54,7 +54,7 @@ jobs:
           mv /tmp/yourplace.service /etc/systemd/system/yourplace.service
           systemctl daemon-reload
           systemctl start yourplace
-          sleep 
+          sleep 5
           systemctl enable yourplace
           systemctl status yourplace
         EOF
