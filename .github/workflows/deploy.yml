@@ -59,6 +59,18 @@ jobs:
           systemctl status yourplace
         EOF
 
+    - name: Fetch logs
+      run: |
+        mkdir -p logs
+        scp -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/var/log/yourplace.log ./logs/
+        scp -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/var/log/yourplace.error.log ./logs/
+
+    - name: Upload logs as artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: yourplace-logs
+        path: logs/
+
     - name: Purge Cloudflare Cache
       run: |
         curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
