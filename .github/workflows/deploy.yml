@@ -45,6 +45,8 @@ jobs:
         scp -i ~/.ssh/id_rsa ./resources/yourplace.service ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/tmp/yourplace.service
         
     - name: Deploy and restart service
+      id: deploy
+      continue-on-error: true
       run: |
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} << 'EOF'
           mkdir -p /opt/YourPlace
@@ -64,6 +66,7 @@ jobs:
         mkdir -p logs
         scp -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/var/log/yourplace.log ./logs/
         scp -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }}:/var/log/yourplace.error.log ./logs/
+        ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} 'journalctl -u yourplace -n 200' > ./logs/yourplace-journal.log || echo "Could not fetch journal logs"
 
     - name: Upload logs as artifacts
       uses: actions/upload-artifact@v4
@@ -72,6 +75,7 @@ jobs:
         path: logs/
 
     - name: Purge Cloudflare Cache
+      if: steps.deploy.outcome == 'success'
       run: |
         curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
         -H "Content-Type: application/json" \
