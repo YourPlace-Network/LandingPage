@@ -69,7 +69,7 @@ jobs:
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} 'journalctl -u yourplace -n 200' > ./logs/yourplace-journal.log || echo "Could not fetch journal logs"
         ssh -i ~/.ssh/id_rsa ${{ vars.DO_SSH_USER }}@${{ vars.DO_SSH_HOST }} << 'EOF'
           echo "=== Check what's using port 443 ==="
-          netstat -tulpn | grep 443
+          ss -tulpn | grep 443 || echo "ss not available or nothing found"
         EOF
     - name: Upload logs as artifacts
       uses: actions/upload-artifact@v4
