@@ -51,8 +51,8 @@ jobs:
           mkdir -p /opt/YourPlace
           systemctl stop yourplace
           sleep 5
-          echo "=== Check what's using port 443 ==="
-          ss -tulpn | grep 443 || echo "ss not available or nothing found"
+          pkill -f YourPlaceLanding || echo "No YourPlaceLanding process found"
+          sleep 5
           mv /opt/YourPlace/YourPlaceLanding.new /opt/YourPlace/YourPlaceLanding
           chmod +x /opt/YourPlace/YourPlaceLanding
           mv /tmp/yourplace.service /etc/systemd/system/yourplace.service
