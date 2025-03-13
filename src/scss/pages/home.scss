@@ -72,7 +72,8 @@
   /*border: 4px solid .$colors, "text");*/
   height: 150px;
   text-align: center;
-  margin: 35px 20px 20px 20px;
+  align-content: center;
+  margin: 1em;
 }
 .featureLogo {
   color: map.get(global.$colors, "text");
@@ -83,17 +84,18 @@
 }
 
 #row3 {
-  height: 16em;
+  height: 15em;
   background-color: hsl(0, 0%, 19.2%, 0.9);
-  padding: 2.2em;
+  padding-top: 0.5em;
 }
 #testimonyContainer {
   width: 100%;
-  height: 11.5em;
+  height: 15em;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   padding-bottom: 20px;
+  padding-top: 1em;
   max-width: 100vw;
   left: 0;
   right: 0;
@@ -182,6 +184,18 @@
   margin-top: 5px;
 }
 
+@media screen and (max-width: 750px) {
+  .testimonyContainer {
+    height: 100%;
+  }
+  .testimonyText {
+    font-size: 1.3rem;
+  }
+  .citationImg {
+    width: 45px;
+    height: 45px;
+  }
+}
 @media screen and (max-width: 576px) {
   #row2 {
     margin-bottom: 20px;
@@ -208,11 +222,11 @@
     width: 95%;
   }
   .testimonyText {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .citationImg {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
   #ctaSubscribe {
     margin-top: 25px;
@@ -221,6 +235,10 @@
 @media screen and (max-width: 414px) {
   .testimonyText {
     font-size: 1rem;
+  }
+  .citationImg {
+    width: 40px;
+    height: 40px;
   }
   #profile2Img {
     position: relative;
