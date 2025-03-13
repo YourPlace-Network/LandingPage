@@ -87,6 +87,15 @@ func main() {
 		if err != nil {
 			log.Fatalln("Could not start server: " + err.Error())
 		}
+	} else {
+		srv = &http.Server{
+			Addr:    ":8080",
+			Handler: CSRF(router),
+		}
+		err = srv.ListenAndServe()
+		if err != nil {
+			log.Fatalln("Could not start server: " + err.Error())
+		}
 	}
 }
 

@@ -162,7 +162,7 @@ a:active {
   margin: 0;
   padding: 0;
   z-index: -50;
-  position: relative;
+  position: absolute;
   display: block;
 }
 #fade {
@@ -170,8 +170,8 @@ a:active {
   height: 40px;
   background: linear-gradient(transparent, #313131);
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: -40px;
+  margin-top: calc((100vw * 0.484));
   z-index: -40;
 }
 #headlineDiv {
