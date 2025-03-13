@@ -25,6 +25,12 @@
   padding-bottom: 1em;
   padding-top: 1em;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-check-label {
+  margin-left: 8px;
 }
 #row3 {
   background-color: hsl(0, 0%, 19.2%, 0.9);

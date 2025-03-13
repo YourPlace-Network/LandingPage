@@ -25,11 +25,10 @@ interface DownloadLinks {
             csrfToken: (document.getElementById("csrfToken") as HTMLInputElement).value,
             email: document.getElementById("emailInput") as HTMLInputElement,
             recommendedDiv: document.getElementById("recommendedDiv") as HTMLDivElement,
+            recommendedBtn: document.getElementById("recommendedBtn") as HTMLDivElement,
             recommendedText: document.getElementById("recommendedText") as HTMLParagraphElement,
             recommendedImg: document.getElementById("recommendedImg") as HTMLImageElement,
-            osxArch: document.getElementById("osxArch") as HTMLSelectElement,
             osxDiv: document.getElementById("osxDiv") as HTMLDivElement,
-            winArch: document.getElementById("winArch") as HTMLSelectElement,
             winDiv: document.getElementById("winDiv") as HTMLDivElement,
             tosCheckbox: document.getElementById("tosCheckbox") as HTMLInputElement,
         }
@@ -41,6 +40,13 @@ interface DownloadLinks {
 
             // Initially disable download buttons
             disableDownloadButtons();
+
+            // Remove event listeners initially - we'll add them back when TOS is accepted
+            DOM.osxDiv.removeEventListener("click", downloadOSX);
+            DOM.winDiv.removeEventListener("click", downloadWindows);
+            DOM.recommendedBtn.removeEventListener("click", downloadRecommended);
+
+            DOM.tosCheckbox.addEventListener("change", toggleDownloadButtons);
 
             /*ShowDialogModalHTML("<div id=\"ctaSubscribe\" class=\"ctaDiv\">" +
                 "YourPlace downloads are not yet live<br><br>" +
@@ -61,24 +67,24 @@ interface DownloadLinks {
             }
         }
         function disableDownloadButtons() {
-            DOM.recommendedDiv.classList.add("disabled");
+            DOM.recommendedBtn.classList.add("disabled");
             DOM.osxDiv.classList.add("disabled");
             DOM.winDiv.classList.add("disabled");
 
             // Remove event listeners
             DOM.osxDiv.removeEventListener("click", downloadOSX);
             DOM.winDiv.removeEventListener("click", downloadWindows);
-            DOM.recommendedDiv.removeEventListener("click", downloadRecommended);
+            DOM.recommendedBtn.removeEventListener("click", downloadRecommended);
         }
         function enableDownloadButtons() {
-            DOM.recommendedDiv.classList.remove("disabled");
+            DOM.recommendedBtn.classList.remove("disabled");
             DOM.osxDiv.classList.remove("disabled");
             DOM.winDiv.classList.remove("disabled");
 
             // Add event listeners
             DOM.osxDiv.addEventListener("click", downloadOSX);
             DOM.winDiv.addEventListener("click", downloadWindows);
-            DOM.recommendedDiv.addEventListener("click", downloadRecommended);
+            DOM.recommendedBtn.addEventListener("click", downloadRecommended);
         }
         function setRecommendedDownload() {
             const clientOS = detectClientInfo();
@@ -153,7 +159,6 @@ interface DownloadLinks {
         DOM.osxDiv.addEventListener("click", downloadOSX);
         DOM.winDiv.addEventListener("click", downloadWindows);
         DOM.recommendedDiv.addEventListener("click", downloadRecommended);
-        DOM.tosCheckbox.addEventListener("change", toggleDownloadButtons);
 
         init().then();
     }
