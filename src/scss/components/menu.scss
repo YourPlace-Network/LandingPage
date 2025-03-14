@@ -11,19 +11,23 @@ body.modal-open {
   right: 1em;
   height: 3.7em;
   width: 3.7em;
-  background: map.get(global.$colors, "quaternary");
+  background: global.$quaternary;
   z-index: 100;
 }
 #htmlMenu i {
   display: inline-flex;
   font-size: 3em;
-  margin-left: -.15em;
-  color: map.get(global.$colors, "tertiary");
+  margin-left: -0.16em;
+  margin-top: -0.03em;
+  color: global.$tertiary;
 }
 #htmlMenuOffcanvas {
   max-width: 80%;
-  min-width: 20%;
-  width: 250px;
+  min-width: 15em;
+  width: 16em;
+}
+#menuOffcanvasHeader {
+  width: 100%;
 }
 #menuAvatar {
   position: relative;
