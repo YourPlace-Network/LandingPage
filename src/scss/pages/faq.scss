@@ -1,6 +1,15 @@
 @use "sass:map";
 @use "../global.scss";
 
+#accordionFAQ {
+  margin-top: 1.5em;
+}
 .fossList {
   padding-top: 15px;
+}
+button.accordion-button {
+  border-radius: 1em !important;
+}
+#footerText {
+  margin-top: 3em;
 }

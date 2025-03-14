@@ -2,9 +2,10 @@
 @use "../global.scss";
 
 #recommendedDiv {
-  background-color: hsl(0, 0%, 19.2%, 0.9);
+  background-color: global.$secondary;
   height: 170px;
   text-align: center;
+  border-radius: 2.5em;
 }
 #recommendedDiv > h4 {
   margin-top: 5px;
@@ -15,11 +16,16 @@
   width: 5em;
 }
 #recommendedText {
-  color: map.get(global.$colors, "text");
+  color: global.$text;
   margin-bottom: 20px;
 }
 #tosRow {
   text-align: center;
+}
+#tosColumn {
+  background-color: global.$secondary;
+  border-radius: 2.5em;
+  margin-bottom: 1em;
 }
 #tosDiv {
   padding-bottom: 1em;
@@ -32,7 +38,8 @@
 #tosCheckbox {
   width: 2em;
   height: 2em;
-  border: 2px solid white;
+  border: 2px solid map.get(global.$colors, "text");
+  margin-right: 1em;
 }
 .form-check-label {
   margin-left: 8px;
