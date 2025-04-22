@@ -1,6 +1,5 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import "../../scss/components/menu.scss";
-import {YourPlaceServerDetector} from "../util/network";
 
 (function initialize() {
     if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", main);} else {main();}
