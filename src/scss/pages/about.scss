@@ -11,24 +11,28 @@
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
 }
-#whoImg {
-  width: 80px;
-  height: 80px;
+.whoImg {
+  width: 5em;
+  height: 5em;
   float: left;
-  margin: 15px 15px 10px 0;
+  margin-right: 1em;
+  border-radius: 1em;
 }
-#whoText {
+.whoText {
   margin: 0;
 }
-#linkedinImg {
-  width: 25px;
-  height: 25px;
+.linkedinImg {
+  width: 1.5em;
+  height: 1.5em;
   clear: both;
   display: block;
   float: right;
-  margin-top: -10px;
+  margin-top: -1.3em;
 }
 #pronounceBtn {
   padding-left: .1em;
   margin-right: -.2em;
+}
+#nopsDiv {
+  padding-bottom: 0.5em;
 }
