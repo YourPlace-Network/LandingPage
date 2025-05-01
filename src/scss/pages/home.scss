@@ -65,10 +65,11 @@
 }
 
 #row2 {
-  background-color: global.$secondary;
+  background-color: global.$tertiary;
+  padding-top: 1em;
 }
 .featureDiv {
-  border: 4px solid global.$text "text";
+  border: 3px solid global.$text;
   border-radius: 1em;
   height: 150px;
   text-align: center;
@@ -84,9 +85,9 @@
 }
 
 #row3 {
-  height: 15em;
+  height: 20em;
   background-color: hsl(0, 0%, 19.2%, 0.9);
-  padding-top: 0.5em;
+  padding-top: 4em;
 }
 #testimonyContainer {
   width: 100%;
@@ -182,6 +183,10 @@
 }
 #ctaBtn {
   margin-top: 5px;
+}
+#downloadText,
+#subscribeText {
+  font-size: 2em;
 }
 
 @media screen and (max-width: 750px) {

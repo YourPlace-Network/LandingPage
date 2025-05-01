@@ -47,16 +47,20 @@ body.modal-open {
   display: block;
   width: 100%;
   min-width: 80%;
-  height: 2.5em;
-  padding-left: .5em;
+  height: 2.1em;
+  padding-left: .2em;
+  font-size: 1.7em;
 }
 .menuItemA,
 .menuItemA:hover,
 .menuItemA:active,
 .menuItemA:visited {
   text-decoration: none;
-  color: map.get(global.$colors, "text");
+  color: global.$text;
 }
 #menuLoginBtn {
   margin-left: 4em;
+  height: 2.5em;
+  width: 5em;
+  color: global.$text;
 }

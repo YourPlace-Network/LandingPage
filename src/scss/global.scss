@@ -250,7 +250,8 @@ a:active {
   }
 }
 #rowFooter {
-  background-color: hsl(0, 0%, 19.2%, 0.9);
+  padding-top: 3em;
+  background-color: $tertiary;
 }
 #footerText {
   text-align: center;
