@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "../global.scss";
 
-
 #headlineConversationDiv {
   max-width: 500px;
   min-width: 300px;
@@ -200,8 +199,12 @@
   background-color: hsl(0, 0%, 19.2%, 0.9);
 }
 .ctaDiv {
+  padding: 0.5em;
+}
+.ctaColumn {
+  display: flex;
+  justify-content: center;
   text-align: center;
-  padding: 5px;
 }
 #ctaBtn {
   margin-top: 1em;
@@ -212,6 +215,7 @@
 #downloadText,
 #subscribeText {
   font-size: 2em;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 750px) {
