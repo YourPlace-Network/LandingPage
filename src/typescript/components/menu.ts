@@ -1,5 +1,6 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import "../../scss/components/menu.scss";
+import {InitTooltips} from "../util/bootstrap";
 
 (function initialize() {
     if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", main);} else {main();}
@@ -13,6 +14,8 @@ import "../../scss/components/menu.scss";
             bsOffcanvas: new window.bootstrap.Offcanvas("#htmlMenuOffcanvas"),
             bsOffcanvasElement: document.getElementById("htmlMenuOffcanvas")! as HTMLElement,
         }
+
+        InitTooltips();
 
         DOM.bsOffcanvasElement.addEventListener("shown.bs.offcanvas", async () => {
             /*const yourPlaceServerRunning = await YourPlaceServerDetector.checkService();

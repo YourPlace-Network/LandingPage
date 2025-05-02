@@ -131,15 +131,12 @@ a:active {
 .hidden {
   display: none;
 }
-.disabled-link {
-  pointer-events: none;
-  cursor: not-allowed;
-  //opacity: 0.6;
-}
 .disabled {
-  opacity: 0.5 !important;
-  pointer-events: none !important;
-  cursor: not-allowed !important;
+  opacity: 0.6;
+  cursor: context-menu;
+  //pointer-events: none;
+  color: rgb(95, 95, 95);
+  //user-select: none;
 }
 .skeuomorphism-btn {
   border-radius: 8px;
