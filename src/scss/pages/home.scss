@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "../global.scss";
 
+
 #headlineConversationDiv {
   max-width: 500px;
   min-width: 300px;
@@ -172,6 +173,27 @@
   color: map.get(global.$colors, "text");
 }
 
+#rowPreview {
+  position: relative;
+  width: 100%;
+}
+#previewDiv {
+  text-align: center;
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+#previewFrameImg {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+#previewContentDiv {
+
+}
+
 #row4 {
   margin-top: 5px;
   margin-bottom: 50px;
@@ -182,7 +204,10 @@
   padding: 5px;
 }
 #ctaBtn {
-  margin-top: 5px;
+  margin-top: 1em;
+}
+.ctaBtnText {
+  font-size: 1.5em;
 }
 #downloadText,
 #subscribeText {

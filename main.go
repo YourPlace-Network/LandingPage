@@ -53,6 +53,7 @@ func main() {
 	router := gin.Default()
 	LoadTemplates(router, templateFS, "src/templates/*gohtml")
 	router.Use(middleware.ContentTypeMiddleware())
+	router.Use(middleware.CacheControlMiddleware())
 	router.Use(middleware.CORSMiddleware())
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
