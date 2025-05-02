@@ -168,7 +168,9 @@
 }
 .citationAuthor {
   font-weight: bold;
-  color: map.get(global.$colors, "text");
+  font-size: 1.2em;
+  font-family: "URW Chancery L", cursive;
+  color: global.$text;
 }
 
 #rowPreview {
