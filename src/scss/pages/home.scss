@@ -85,9 +85,9 @@
 }
 
 #row3 {
-  height: 20em;
-  background-color: hsl(0, 0%, 19.2%, 0.9);
-  padding-top: 4em;
+  height: 18em;
+  background-color: global.$tertiary;
+  padding-top: 3.5em;
 }
 #testimonyContainer {
   width: 100%;
@@ -95,7 +95,6 @@
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  padding-bottom: 20px;
   padding-top: 1em;
   max-width: 100vw;
   left: 0;
@@ -175,14 +174,16 @@
 #rowPreview {
   position: relative;
   width: 100%;
+  height: auto;
 }
 #previewDiv {
   text-align: center;
   position: relative;
-  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  width: 100%;
+  max-width: 50em;
 }
 #previewFrameImg {
   width: 100%;
@@ -190,13 +191,21 @@
   position: relative;
 }
 #previewContentDiv {
-
+  position: absolute;
+  top: 7.6%;
+  left: 12.7%;
+  width: 74.6%;
+  height: 78%;
+  z-index: 10;
+}
+#previewImg {
+  width: auto;
+  height: 100%;
 }
 
 #row4 {
-  margin-top: 5px;
-  margin-bottom: 50px;
-  background-color: hsl(0, 0%, 19.2%, 0.9);
+  margin-top: 5em;
+  background-color: global.$tertiary;
 }
 .ctaDiv {
   padding: 0.5em;
@@ -230,6 +239,12 @@
     height: 45px;
   }
 }
+@media screen and (max-width: 635px) {
+  .featureText,
+  .featureLogo {
+    font-size: 1.1em;
+  }
+}
 @media screen and (max-width: 576px) {
   #row2 {
     margin-bottom: 20px;
@@ -238,9 +253,13 @@
     height: 100px;
     margin: 0;
   }
+  #rowPreview {
+    padding-top: 13em;
+  }
   #row4 {
     margin-top: 0;
-    padding-top: 12em;
+    padding-top: 3em;
+    margin-bottom: 0;
   }
   #row3 {
     height: 0;
@@ -256,14 +275,11 @@
     width: 95%;
   }
   .testimonyText {
-    font-size: 1rem;
+    font-size: 1em;
   }
   .citationImg {
     width: 40px;
     height: 40px;
-  }
-  #ctaSubscribe {
-    margin-top: 25px;
   }
 }
 @media screen and (max-width: 414px) {
