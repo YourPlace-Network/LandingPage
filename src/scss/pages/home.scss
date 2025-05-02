@@ -245,7 +245,7 @@
     font-size: 1.1em;
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 575px) {
   #row2 {
     margin-bottom: 20px;
   }
@@ -280,6 +280,9 @@
   .citationImg {
     width: 40px;
     height: 40px;
+  }
+  #ctaSubscribe {
+    padding-top: 2.5em;
   }
 }
 @media screen and (max-width: 414px) {
