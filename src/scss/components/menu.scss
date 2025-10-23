@@ -13,6 +13,8 @@ body.modal-open {
   width: 3.7em;
   background: global.$quaternary;
   z-index: 100;
+  box-shadow: none;
+  border: none;
 }
 #htmlMenu i {
   display: inline-flex;
