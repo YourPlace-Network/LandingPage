@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/csrf"
 	"html/template"
 	"net/http"
 	"net/url"
@@ -22,11 +21,9 @@ func DownloadRoutes(router *gin.Engine, title string, db *sql.DB) {
 	downloadJson, _ := json.Marshal(downloads)
 
 	router.GET("/download", func(c *gin.Context) {
-		token := csrf.Token(c.Request)
 		c.HTML(http.StatusOK, "src/templates/pages/download.gohtml", gin.H{
 			"title":     title,
 			"pageName":  "download",
-			"csrfToken": token,
 			"downloads": template.JS(downloadJson), // use template.JS to safely inject JavaScript
 		})
 	})

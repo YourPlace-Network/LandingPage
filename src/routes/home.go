@@ -4,29 +4,24 @@ import (
 	"YourPlace/src/core/security"
 	"database/sql"
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/csrf"
 	"net/http"
 	"time"
 )
 
 func HomeRoutes(router *gin.Engine, title string, db *sql.DB, favicon []byte) {
 	router.GET("/", func(c *gin.Context) {
-		token := csrf.Token(c.Request)
 		c.HTML(http.StatusOK, "src/templates/pages/home.gohtml", gin.H{
-			"title":     title,
-			"pageName":  "home",
-			"csrfToken": token,
+			"title":    title,
+			"pageName": "home",
 		})
 	})
 	router.GET("/favicon.ico", func(c *gin.Context) {
 		c.Data(http.StatusOK, "image/x-icon", favicon)
 	})
 	router.GET("/unsubscribe", func(c *gin.Context) {
-		token := csrf.Token(c.Request)
 		c.HTML(http.StatusOK, "src/templates/pages/unsubscribe.gohtml", gin.H{
-			"title":     title,
-			"pageName":  "unsubscribe",
-			"csrfToken": token,
+			"title":    title,
+			"pageName": "unsubscribe",
 		})
 	})
 

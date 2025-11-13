@@ -9,10 +9,6 @@ import (
 	"database/sql"
 	"embed"
 	"encoding/pem"
-	"github.com/gin-contrib/gzip"
-	"github.com/gin-gonic/gin"
-	_ "github.com/glebarez/go-sqlite"
-	"github.com/gorilla/csrf"
 	"html/template"
 	"io/fs"
 	"log"
@@ -20,11 +16,14 @@ import (
 	"os"
 	"regexp"
 	"strings"
+
+	"github.com/gin-contrib/gzip"
+	"github.com/gin-gonic/gin"
+	_ "github.com/glebarez/go-sqlite"
 )
 
 var (
-	title      = "YourPlace"
-	cryptoSeed = security.RandomBytes(32)
+	title = "YourPlace"
 )
 
 //go:embed src/templates
@@ -68,7 +67,10 @@ func main() {
 	routes.FAQRoutes(router, title)
 	routes.PortRoutes(router)
 	// --- Start Web Server Loop --- //
-	CSRF := csrf.Protect(cryptoSeed, csrf.SameSite(csrf.SameSiteStrictMode), csrf.Secure(true), csrf.HttpOnly(true), csrf.Path("/"))
+	// Initialize Go 1.25 native CSRF protection
+	csrfProtection := http.NewCrossOriginProtection()
+	csrfProtection.AddTrustedOrigin("https://yourplace.network")
+
 	var srv *http.Server
 	if ifFileExists("cert.pem") && ifFileExists("cert.key") {
 		cert, err := tls.LoadX509KeyPair("cert.pem", "cert.key")
@@ -81,7 +83,7 @@ func main() {
 		}
 		srv = &http.Server{
 			Addr:      ":443",
-			Handler:   CSRF(router),
+			Handler:   csrfProtection.Handler(router),
 			TLSConfig: tlsConfig,
 		}
 		err = srv.ListenAndServeTLS("", "")
@@ -91,7 +93,7 @@ func main() {
 	} else {
 		srv = &http.Server{
 			Addr:    ":8080",
-			Handler: CSRF(router),
+			Handler: csrfProtection.Handler(router),
 		}
 		err = srv.ListenAndServe()
 		if err != nil {

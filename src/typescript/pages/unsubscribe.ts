@@ -9,7 +9,6 @@ import "../components/menu";
 
     function main() {
         const DOM = {
-            csrfToken: (document.getElementById("csrfToken") as HTMLInputElement).value,
             unsubscribeEmail: document.getElementById("unsubscribedEmail") as HTMLInputElement,
             unsubscribeButton: document.getElementById("unsubscribeButton") as HTMLButtonElement,
         };
@@ -53,7 +52,6 @@ import "../components/menu";
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
-                        "X-CSRF-Token": DOM.csrfToken,
                     },
                     body: JSON.stringify({"email": email})
                 });

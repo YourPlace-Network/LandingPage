@@ -1,19 +1,16 @@
 {{define "htmlMenu"}}<div class="offcanvas offcanvas-end" tabindex="-1" id="htmlMenuOffcanvas" data-bs-scroll="true"
                           aria-labelledby="htmlMenuOffcanvas" data-bs-backdrop="true" data-bs-keyboard="true">
         <div class="offcanvas-header d-flex align-items-center" id="menuOffcanvasHeader">
-            <a href="/" class="grow cursorPointer" id="menuAvatarLink">
+            <a href="https://app.yourplace.network/p/yourplace.base.eth" class="grow cursorPointer" id="menuAvatarLink">
                 <img src="/static/image/yourplace-logo.svg" id="menuAvatar" alt="Avatar">
             </a>
-            <button class="btn btn-primary skeuomorphism-btn" id="menuLoginBtn" disabled>Login🔒</button>
+            <a href="https://app.yourplace.network/login" class="grow cursorPointer" id="loginBtn">
+                <button class="btn btn-primary" id="menuLoginBtn" >Login</button>
+            </a>
         </div>
         <div class="offcanvas-body flex">
-            <a href="/" class="menuItemA">
-                <div id="menuHome" class="menuItemDiv grow cursorPointer">🏠 Home</div>
-            </a>
-            <a href="javascript:void(0)" class="menuItemA">
-                <div id="menuBrowse" class="menuItemDiv grow disabled"
-                     data-bs-toggle="tooltip" data-bs-placement="left"
-                     data-bs-custom-class="custom-tooltip" data-bs-title="Coming Soon!">🔍 Browse</div>
+            <a href="https://app.yourplace.network/" class="menuItemA">
+                <div id="menuApp" class="menuItemDiv grow cursorPointer">🏠 Places</div>
             </a>
             <a href="/download" class="menuItemA">
                 <div id="menuDownload" class="menuItemDiv grow cursorPointer">💾 Download</div>
@@ -24,9 +21,6 @@
             <a href="https://github.com/YourPlace-Network/" class="menuItemA" target="_blank">
                 <div id="menuabout" class="menuItemDiv grow cursorPointer">🛠️ Build</div>
             </a>
-            <a href="https://investor.yourplace.network" class="menuItemA" target="_blank">
-                <div id="menuabout" class="menuItemDiv grow cursorPointer">🚀 Invest</div>
-            </a>
             <a href="/faq" class="menuItemA">
                 <div id="menufaq" class="menuItemDiv grow cursorPointer">❔ FAQ</div>
             </a>
@@ -35,7 +29,7 @@
             </a>
         </div>
     </div>
-    <button class="btn grow skeuomorphism-btn skeuomorphism-left" id="htmlMenu" data-bs-toggle="offcanvas" data-bs-target="#htmlMenuOffcanvas" aria-controls="offcanvasWithBothOptions">
+    <button class="btn grow" id="htmlMenu" data-bs-toggle="offcanvas" data-bs-target="#htmlMenuOffcanvas" aria-controls="offcanvasWithBothOptions">
         <i class="bi bi-list"></i>
     </button>
 {{template "modalLogin" .}}{{end}}

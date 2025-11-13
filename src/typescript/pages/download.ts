@@ -22,7 +22,6 @@ interface DownloadLinks {
     function main() {
         let DOM = {
             ctaBtn: document.getElementById("ctaBtn") as HTMLButtonElement,
-            csrfToken: (document.getElementById("csrfToken") as HTMLInputElement).value,
             email: document.getElementById("emailInput") as HTMLInputElement,
             recommendedDiv: document.getElementById("recommendedDiv") as HTMLDivElement,
             recommendedBtn: document.getElementById("recommendedBtn") as HTMLDivElement,

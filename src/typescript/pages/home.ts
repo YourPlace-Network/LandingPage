@@ -9,7 +9,6 @@ import {ShowDialogModal} from "../components/modalDialog";
     function main() {
         let DOM = {
             ctaBtn: document.getElementById("ctaBtn") as HTMLButtonElement,
-            csrfToken: (document.getElementById("csrfToken") as HTMLInputElement).value,
             email: document.getElementById("emailInput") as HTMLInputElement,
         }
 
@@ -42,7 +41,6 @@ import {ShowDialogModal} from "../components/modalDialog";
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
-                        "X-CSRF-Token": DOM.csrfToken,
                     },
                     body: JSON.stringify({"email": DOM.email.value})
                 });

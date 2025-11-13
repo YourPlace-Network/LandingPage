@@ -204,7 +204,7 @@
   height: 100%;
 }
 
-#row4 {
+#rowCTA {
   margin-top: 5em;
   background-color: global.$tertiary;
 }
@@ -223,7 +223,8 @@
   font-size: 1.5em;
 }
 #downloadText,
-#subscribeText {
+#subscribeText,
+#placesText, {
   font-size: 2em;
   font-weight: bold;
 }
@@ -257,7 +258,7 @@
   #rowPreview {
     padding-top: 13em;
   }
-  #row4 {
+  #rowCTA {
     margin-top: 0;
     padding-top: 3em;
     margin-bottom: 0;

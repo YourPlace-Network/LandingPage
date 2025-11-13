@@ -5,7 +5,7 @@
     <div class="container-fluid vh-100">
 
         <div class="row" id="row1">
-            <img id="headlineImg" src="/static/image/headliner.jpg" alt="headline image">
+            <!--<img id="headlineImg" src="/static/image/headliner.jpg" alt="headline image">-->
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
                 <div id="headlineDiv">
@@ -112,28 +112,36 @@
             <div class="col-sm-1"></div>
         </div>
 
-        <div class="row" id="row4">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-5 ctaColumn">
+        <div class="row" id="rowCTA">
+            <div class="col-sm-4 ctaColumn">
                 <div id="ctaDownload" class="ctaDiv">
                     <p id="downloadText">Get YourPlace <span class="bounce">⬇️</span></p>
                     <a href="/download">
-                        <button id="ctaButton" class="btn btn-primary skeuomorphism-btn">
+                        <button id="ctaButton" class="btn btn-primary">
                             <span class="ctaBtnText">💾 Download</span>
                         </button>
                     </a>
                 </div>
             </div>
-            <div class="col-sm-5 ctaColumn">
+            <div class="col-sm-4 ctaColumn">
+                <div id="ctaPlaces" class="ctaDiv">
+                    <p id="placesText">Browse Places 🏠</p>
+                    <a href="https://app.yourplace.network">
+                        <button id="ctaBrowseBtn" class="btn btn-primary">
+                            <span class="ctaBtnText">🔍 Search</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-4 ctaColumn">
                 <div id="ctaSubscribe" class="ctaDiv">
                     <p id="subscribeText">Join our Newsletter 📬</p>
                     <input type="text" id="emailInput" class="form-control" placeholder="Email Address">
-                    <button id="ctaBtn" class="btn btn-primary skeuomorphism-btn">
+                    <button id="ctaBtn" class="btn btn-primary">
                         <span class="ctaBtnText">📧 Subscribe</span>
                     </button>
                 </div>
             </div>
-            <div class="col-sm-1"></div>
         </div>
 
         <div class="row" id="rowFooter">
@@ -144,6 +152,5 @@
             <div class="col-sm-1"></div>
         </div>
     </div>
-    <input type="hidden" id="csrfToken" value="{{ .csrfToken }}">
 </body>
 </html>

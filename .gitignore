@@ -1,8 +1,9 @@
 .idea
 *.iml
 /target
-/node_modules
+/node_modules/
 /src/www/js/
 *.db
 *.log
 /package-lock.json
+YourPlace

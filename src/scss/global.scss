@@ -138,28 +138,6 @@ a:active {
   color: rgb(95, 95, 95);
   //user-select: none;
 }
-.skeuomorphism-btn {
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  align-items: center;
-  justify-content: center;
-  display: inline;
-  &:hover {
-    opacity: 0.9;
-  }
-  &:active {
-    opacity: 0.8;
-  }
-  // For icons or text inside the button
-  > i {
-    margin-right: 8px;
-  }
-  > span {
-  }
-  > img {
-    margin-right: 8px;
-  }
-}
 
 @keyframes rotate {
   0% {
