@@ -67,9 +67,9 @@ func main() {
 	routes.FAQRoutes(router, title)
 	routes.PortRoutes(router)
 	// --- Start Web Server Loop --- //
-	// Initialize Go 1.25 native CSRF protection
 	csrfProtection := http.NewCrossOriginProtection()
 	csrfProtection.AddTrustedOrigin("https://yourplace.network")
+	log.Println("http://localhost:8080")
 
 	var srv *http.Server
 	if ifFileExists("cert.pem") && ifFileExists("cert.key") {

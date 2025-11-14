@@ -1,10 +1,11 @@
 {{template "header" .}}
 <body class="body">
 {{template "htmlMenu" .}}
-    <div class="container-fluid vh-100">
+    <div class="container-fluid">
         <div class="row" id="row1">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
+                <h2 class="pageHeader">🙋 FAQ</h2>
                 <div class="accordion" id="accordionFAQ">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingUncensorable">
@@ -62,7 +63,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-controls="collapseThree">
-                                🤫 Isn't Blocking Someone Censorship?
+                                🤫 Is Blocking Someone Censorship?
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
@@ -120,7 +121,9 @@
                         <div id="collapseSlow" class="accordion-collapse collapse" aria-labelledby="headingSlow" data-bs-parent="#accordionFAQ">
                             <div class="accordion-body">
                                 <strong>Less popular files are stored on fewer peers in the IPFS network, and thus takes longer to find and download.</strong> Some content may be cached by centralized services to increase the responsiveness of YourPlace, but fully decentralized content may be slower to load. Running a YourPlace server ensures your files are pinned and seeded to the IPFS network so that they are never garbage collected. A single user may run multiple YourPlace servers to further accelerate their content.
-                                Content that is never accessed will eventually be garbage collected from IPFS. The most popular content on IPFS may never be removed because many peers keep a copy.
+                                Content that is never accessed will eventually be garbage collected from IPFS. The most popular content on IPFS may never be removed because many peers keep a copy.<br><br>
+                                To ensure that your files are served in the fastest way possible, it is recommended that you set up an IPFS pinning service in the <a href="/settings#content">IPFS File Pinning Settings</a>. Any IPFS pinning service will work, but we recommend <a href="https://pinata.cloud" target="_blank" rel="noopener noreferrer">Pinata</a>, <a href="https://web3.storage/" target="_blank" rel="noopener noreferrer">Web3.storage</a>, and <a href="https://console.filebase.com/" target="_blank" rel="noopener noreferrer">Filebase</a>. You will need to create an account on their site, generate a key, then add that key into the YourPlace settings.<br><br>
+                                It is also recommended that you ensure that the proper network ports are opened on your router to make the YourPlace server reachable from the public internet. Please see the <a href="/settings#networking">Network Settings</a> page to test that your server is reachable. You will need to consult your ISP or router documentation to understand how to open these ports. It's typically called "port forwarding."
                             </div>
                         </div>
                     </div>
@@ -167,7 +170,7 @@
                                                 <li class="list-group-item">Bootstrap - <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">getbootstrap.com</a></li>
                                                 <li class="list-group-item">Sass Language - <a href="https://sass-lang.com/" target="_blank" rel="noopener noreferrer">sass-lang.com</a></li>
                                                 <li class="list-group-item">IPFS - <a href="https://ipfs.tech" target="_blank" rel="noopener noreferrer">ipfs.tech</a></li>
-                                                <li class="list-group-item">IP2Location - <a href="https://lite.ip2location.com" target="_blank" rel="noopener noreferrer">lite.ip2location.com</a></li>
+                                                <li class="list-group-item">Gin Web Framework - <a href="https://gin-gonic.com/" target="_blank" rel="noopener noreferrer">gin-gonic.com</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm">
@@ -175,11 +178,23 @@
                                                 <li class="list-group-item">Go Language - <a href="https://go.dev/" target="_blank" rel="noopener noreferrer">go.dev</a></li>
                                                 <li class="list-group-item">TypeScript Language - <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">typescriptlang.org</a></li>
                                                 <li class="list-group-item">Webpack - <a href="https://webpack.js.org/" target="_blank" rel="noopener noreferrer">webpack.js.org</a></li>
-                                                <li class="list-group-item">Gin Web Framework - <a href="https://gin-gonic.com/" target="_blank" rel="noopener noreferrer">gin-gonic.com</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingBlockchainRPC">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBlockchainRPC" aria-controls="collapseBlockchainRPC">
+                                🔗 What Is A Blockchain RPC server?
+                            </button>
+                        </h2>
+                        <div id="collapseBlockchainRPC" class="accordion-collapse collapse" aria-labelledby="headingBlockchainRPC" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                <strong>YourPlace uses blockchain technology to store your data on distributed networks. Access to those networks is via a Remote Procedure Call server.</strong> We use these blockchains to store your content, perform authentication, and send money to other users. Each blockchain network has its own RPC server software that you can connect to, which allows access to that network. You can use a public RPC server, but we strongly recommend running your own for privacy, reliability and speed. See the <a href="/settings#collapseBlockchain"><u>Blockchain Settings page</u></a> for more information on configuring your RPC server.
                             </div>
                         </div>
                     </div>
@@ -192,7 +207,7 @@
                         </h2>
                         <div id="collapseCreator" class="accordion-collapse collapse" aria-labelledby="headingCreator" data-bs-parent="#accordionFAQ">
                             <div class="accordion-body">
-                                <strong>YourPlace was created by <a href="https://www.linkedin.com/in/0x9090/" target="_blank" rel="noopener noreferrer"><u>Nops</u></a>, a professional security engineer with a lifetime of engineering, cryptography and software security experience.</strong> Nops believes in fundamental human rights such as free speech and the right to self-sovereignty. He created YourPlace to challenge the censorship status-quo and give responsibility and content ownership back to the user.
+                                <strong>YourPlace was created by <a href="https://www.linkedin.com/in/0x9090/" target="_blank" rel="noopener noreferrer"><u>Nops</u></a>, a professional security engineer with a lifetime of engineering, cryptography and software security experience.</strong> Nops believes in fundamental human rights such as free speech and the right to self-sovereignty. He created YourPlace to challenge the censorship status-quo and give responsibility and content ownership back to the user. YourPlace was coded with love :)
                             </div>
                         </div>
                     </div>
@@ -201,14 +216,9 @@
             </div>
             <div class="col-sm-1"></div>
         </div>
-
-        <div class="row" id="rowFooter">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-                <p id="footerText">Copyright © <script>document.write(/\d{4}/.exec(Date())[0])</script> YourPlace, Inc.</p>
-            </div>
-            <div class="col-sm-1"></div>
-        </div>
     </div>
+    {{template "footer" .}}
+    <input type="hidden" id="csrfToken" value="{{ .csrfToken }}">
+    <input type="hidden" id="isCookieAuthenticated" value="{{ .isCookieAuthenticated }}">
 </body>
 </html>

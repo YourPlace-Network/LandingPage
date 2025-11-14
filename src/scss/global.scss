@@ -169,7 +169,7 @@ a:active {
   justify-content: center;
 }
 #bannerImg {
-  width: 300px;
+  width: 100%;
   margin-top: 40px;
 }
 #subtitleText {
@@ -187,16 +187,16 @@ a:active {
   z-index: 150;
   position: absolute;
   opacity: 50%;
-  right: calc(50% - 20px);
+  right: calc(50% + 50px);
 }
 @media screen and (max-width: 488px) {
   #alphaImg {
-    right: calc(50% - 80px);
+    right: calc(50% + 50px);
   }
 }
 @media screen and (max-width: 368px) {
   #alphaImg {
-    right: calc(50% - 120px);
+    right: calc(50% + 50px);
   }
 }
 #rowFooter {
