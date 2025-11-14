@@ -7,25 +7,27 @@ import "../../scss/components/modalDialog.scss"
 export function ShowDialogModal(message: string) {
     document.getElementById("modalDialogContent")!.textContent = message;
     let element = document.getElementById("modalDialog")!;
-    let modal = new window.bootstrap.Modal(element, {});
+    let modal = window.bootstrap.Modal.getOrCreateInstance(element);
     modal.show();
 }
 export function ShowDialogModalHTML(message: string) {
     document.getElementById("modalDialogContent")!.innerHTML = DOMPurify.sanitize(message, {USE_PROFILES:{html:true}});
     let element = document.getElementById("modalDialog")!;
-    let modal = new window.bootstrap.Modal(element, {});
+    let modal = window.bootstrap.Modal.getOrCreateInstance(element);
     modal.show();
 }
 export function ShowDialogModalHTMLUnsafe(message: string) {
     document.getElementById("modalDialogContent")!.innerHTML = message;
     let element = document.getElementById("modalDialog")!;
-    let modal = new window.bootstrap.Modal(element, {});
+    let modal = window.bootstrap.Modal.getOrCreateInstance(element);
     modal.show();
 }
 export function HideDialogModal() {
     let element = document.getElementById("modalDialog")!;
-    let modal = new window.bootstrap.Modal(element, {});
+    let modal = window.bootstrap.Modal.getOrCreateInstance(element);
     modal.hide();
+    document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
+    document.body.classList.remove("modal-open");
 }
 export function DisableDialogModalOkBtn() {
     (document.getElementsByClassName("yp-modal-btn")[0]! as HTMLButtonElement).style.display = "none";
@@ -38,4 +40,12 @@ export function DisableDialogModalExit() {
     attributeKeyboard.value = "false";
     modalDialog.attributes.setNamedItem(attributeBackdrop);
     modalDialog.attributes.setNamedItem(attributeKeyboard);
+}
+export function EnableDialogModalOkBtn() {
+    (document.getElementsByClassName("yp-modal-btn")[0]! as HTMLButtonElement).style.display = "block";
+}
+export function EnableDialogModalExit() {
+    let modalDialog = document.getElementById("modalDialog")! as HTMLDivElement;
+    modalDialog.removeAttribute("data-bs-backdrop");
+    modalDialog.removeAttribute("data-bs-keyboard");
 }

@@ -114,6 +114,10 @@ interface DownloadLinks {
             }
         }
         function downloadRecommended() {
+            if (!DOM.tosCheckbox.checked) {
+                showTOSWarning();
+                return;
+            }
             const clientInfo = detectClientInfo();
             if (clientInfo == "osx") {
                 downloadOSX();
@@ -141,6 +145,10 @@ interface DownloadLinks {
             return os;
         }
         function downloadOSX() {
+            if (!DOM.tosCheckbox.checked) {
+                showTOSWarning();
+                return;
+            }
             fetch("/download/record?os=osx&version=" + encodeURI(downloadLinks["version"])).then();
             const link = document.createElement('a');
             link.href = downloadLinks["osx"];
@@ -151,6 +159,10 @@ interface DownloadLinks {
             document.body.removeChild(link);
         }
         function downloadWindows() {
+            if (!DOM.tosCheckbox.checked) {
+                showTOSWarning();
+                return;
+            }
             fetch("/download/record?os=windows&version=" + encodeURI(downloadLinks["version"])).then();
             const link = document.createElement('a');
             link.href = downloadLinks["windows"];
@@ -161,6 +173,10 @@ interface DownloadLinks {
             document.body.removeChild(link);
         }
         function downloadLinux() {
+            if (!DOM.tosCheckbox.checked) {
+                showTOSWarning();
+                return;
+            }
             fetch("/download/record?os=linux&version=" + encodeURI(downloadLinks["version"])).then();
             const link = document.createElement('a');
             link.href = downloadLinks["linux"];
