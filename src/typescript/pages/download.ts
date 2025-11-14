@@ -29,60 +29,73 @@ interface DownloadLinks {
             recommendedImg: document.getElementById("recommendedImg") as HTMLImageElement,
             osxDiv: document.getElementById("osxDiv") as HTMLDivElement,
             winDiv: document.getElementById("winDiv") as HTMLDivElement,
+            linuxDiv: document.getElementById("linuxDiv") as HTMLDivElement,
             tosCheckbox: document.getElementById("tosCheckbox") as HTMLInputElement,
+            arrowToTos: document.getElementById("arrowToTos") as HTMLDivElement,
+            arrowToDownload: document.getElementById("arrowToDownload") as HTMLDivElement,
+            versionText: document.getElementById("versionText") as HTMLParagraphElement,
         }
         const downloadLinks: DownloadLinks = window.downloadJson;
 
         async function init() {
+            DOM.versionText.textContent = "Current Version: " + downloadLinks["version"];
             setRecommendedDownload();
             ShowDialogModalHTML("YourPlace is early in its life and <u>many features are not complete</u><br><br>Only use this if you're comfortable testing early-access software");
 
-            // Initially disable download buttons
+            const modalElement = document.getElementById("modalDialog")!;
+            modalElement.addEventListener('hidden.bs.modal', () => {
+                DOM.arrowToTos.style.display = "block";
+            });
+
             disableDownloadButtons();
 
-            // Remove event listeners initially - we'll add them back when TOS is accepted
-            DOM.osxDiv.removeEventListener("click", downloadOSX);
-            DOM.winDiv.removeEventListener("click", downloadWindows);
-            DOM.recommendedBtn.removeEventListener("click", downloadRecommended);
+            DOM.osxDiv.addEventListener("click", downloadOSX);
+            DOM.winDiv.addEventListener("click", downloadWindows);
+            DOM.linuxDiv.addEventListener("click", downloadLinux);
+            DOM.recommendedBtn.addEventListener("click", downloadRecommended);
 
             DOM.tosCheckbox.addEventListener("change", toggleDownloadButtons);
-
-            /*ShowDialogModalHTML("<div id=\"ctaSubscribe\" class=\"ctaDiv\">" +
-                "YourPlace downloads are not yet live<br><br>" +
-                "<p id=\"subscribeText\">Subscribe to be notified of the Alpha Test!</p>" +
-                "<input type=\"text\" id=\"emailInput\" class=\"form-control\" placeholder=\"Email Address\">" +
-                "<button id=\"ctaBtn\" class=\"btn btn-primary\">" +
-                "<i class=\"bi bi-envelope\"></i> Subscribe" +
-                "</button>" +
-                "</div>" +
-                "</b>");*/
-            //(document.getElementById("ctaBtn") as HTMLButtonElement).addEventListener("click", subscribe);
+        }
+        function showTOSWarning() {
+            ShowDialogModal("You must accept the Terms of Service before downloading.");
         }
         function toggleDownloadButtons() {
             if (DOM.tosCheckbox.checked) {
                 enableDownloadButtons();
+                DOM.arrowToTos.style.display = "none";
+                DOM.arrowToDownload.style.display = "block";
             } else {
                 disableDownloadButtons();
+                DOM.arrowToTos.style.display = "block";
+                DOM.arrowToDownload.style.display = "none";
             }
         }
         function disableDownloadButtons() {
             DOM.recommendedBtn.classList.add("disabled");
             DOM.osxDiv.classList.add("disabled");
             DOM.winDiv.classList.add("disabled");
-
-            // Remove event listeners
+            DOM.linuxDiv.classList.add("disabled");
             DOM.osxDiv.removeEventListener("click", downloadOSX);
             DOM.winDiv.removeEventListener("click", downloadWindows);
+            DOM.linuxDiv.removeEventListener("click", downloadLinux);
             DOM.recommendedBtn.removeEventListener("click", downloadRecommended);
+            DOM.osxDiv.addEventListener("click", showTOSWarning);
+            DOM.winDiv.addEventListener("click", showTOSWarning);
+            DOM.linuxDiv.addEventListener("click", showTOSWarning);
+            DOM.recommendedBtn.addEventListener("click", showTOSWarning);
         }
         function enableDownloadButtons() {
             DOM.recommendedBtn.classList.remove("disabled");
             DOM.osxDiv.classList.remove("disabled");
             DOM.winDiv.classList.remove("disabled");
-
-            // Add event listeners
+            DOM.linuxDiv.classList.remove("disabled");
+            DOM.osxDiv.removeEventListener("click", showTOSWarning);
+            DOM.winDiv.removeEventListener("click", showTOSWarning);
+            DOM.linuxDiv.removeEventListener("click", showTOSWarning);
+            DOM.recommendedBtn.removeEventListener("click", showTOSWarning);
             DOM.osxDiv.addEventListener("click", downloadOSX);
             DOM.winDiv.addEventListener("click", downloadWindows);
+            DOM.linuxDiv.addEventListener("click", downloadLinux);
             DOM.recommendedBtn.addEventListener("click", downloadRecommended);
         }
         function setRecommendedDownload() {
@@ -94,19 +107,20 @@ interface DownloadLinks {
                 } else if (clientOS === "windows") {
                     DOM.recommendedText.textContent = "Microsoft Windows"
                     DOM.recommendedImg.src = `/static/image/windows.svg`;
+                } else if (clientOS === "linux") {
+                    DOM.recommendedText.textContent = "Linux"
+                    DOM.recommendedImg.src = `/static/image/linux.svg`;
                 }
             }
         }
         function downloadRecommended() {
-            if (!DOM.tosCheckbox.checked) {
-                ShowDialogModal("You must accept the Terms of Service before downloading.");
-                return;
-            }
             const clientInfo = detectClientInfo();
             if (clientInfo == "osx") {
                 downloadOSX();
             } else if (clientInfo == "windows") {
                 downloadWindows();
+            } else if (clientInfo == "linux") {
+                downloadLinux();
             }
         }
         function detectClientInfo(): string {
@@ -127,11 +141,7 @@ interface DownloadLinks {
             return os;
         }
         function downloadOSX() {
-            if (!DOM.tosCheckbox.checked) {
-                ShowDialogModal("You must accept the Terms of Service before downloading.");
-                return;
-            }
-            fetch("/download/record?os=osx&version=" + encodeURI(downloadLinks["version"])).then(); // Record download
+            fetch("/download/record?os=osx&version=" + encodeURI(downloadLinks["version"])).then();
             const link = document.createElement('a');
             link.href = downloadLinks["osx"];
             link.setAttribute("download", "");
@@ -141,11 +151,7 @@ interface DownloadLinks {
             document.body.removeChild(link);
         }
         function downloadWindows() {
-            if (!DOM.tosCheckbox.checked) {
-                ShowDialogModal("You must accept the Terms of Service before downloading.");
-                return;
-            }
-            fetch("/download/record?os=windows&version=" + encodeURI(downloadLinks["version"])).then(); // Record download
+            fetch("/download/record?os=windows&version=" + encodeURI(downloadLinks["version"])).then();
             const link = document.createElement('a');
             link.href = downloadLinks["windows"];
             link.setAttribute("download", "");
@@ -154,10 +160,16 @@ interface DownloadLinks {
             link.click();
             document.body.removeChild(link);
         }
-
-        DOM.osxDiv.addEventListener("click", downloadOSX);
-        DOM.winDiv.addEventListener("click", downloadWindows);
-        DOM.recommendedDiv.addEventListener("click", downloadRecommended);
+        function downloadLinux() {
+            fetch("/download/record?os=linux&version=" + encodeURI(downloadLinks["version"])).then();
+            const link = document.createElement('a');
+            link.href = downloadLinks["linux"];
+            link.setAttribute("download", "");
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
         init().then();
     }

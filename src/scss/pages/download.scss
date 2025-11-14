@@ -3,15 +3,20 @@
 
 #recommendedDiv {
   background-color: global.$secondary;
-  height: 170px;
+  height: 180px;
   text-align: center;
   border-radius: 2.5em;
+  position: relative;
 }
 #recommendedDiv > h4 {
   margin-top: 5px;
 }
+#recommendedBtn {
+  position: relative;
+  display: inline-block;
+}
 #recommendedImg {
-  margin-top: 10px;
+  margin: 10px 0 5px 0;
   height: 5em;
   width: 5em;
 }
@@ -26,6 +31,7 @@
   background-color: global.$secondary;
   border-radius: 2.5em;
   margin-bottom: 1em;
+  position: relative;
 }
 #tosDiv {
   padding-bottom: 1em;
@@ -40,6 +46,7 @@
   height: 2em;
   border: 2px solid map.get(global.$colors, "text");
   margin-right: 1em;
+  cursor: pointer;
 }
 .form-check-label {
   margin-left: 8px;
@@ -67,6 +74,16 @@
 }
 .platformText {
   color: map.get(global.$colors, "text");
+  padding-top: 0.5em;
+}
+
+#versionRow {
+  text-align: center;
+  margin-top: 20px;
+}
+#versionText {
+  color: map.get(global.$colors, "text");
+  font-size: 0.9em;
 }
 
 .ctaDiv {
@@ -75,6 +92,41 @@
 }
 #ctaBtn {
   margin-top: 5px;
+}
+
+#arrowToTos {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid map.get(global.$colors, "success");
+  position: relative;
+  display: none;
+  animation: bobbingRight 1s ease-in-out infinite;
+  float: left;
+  left: -3.5em;
+  top: 1em;
+}
+#arrowToDownload {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid map.get(global.$colors, "success");
+  position: absolute;
+  display: none;
+  animation: bobbingRight 1s ease-in-out infinite;
+  left: -3.5em;
+  top: 40%;
+  transform: translateY(-50%);
+}
+@keyframes bobbingRight {
+  0%, 100% {
+    transform: translate(0, -50%);
+  }
+  50% {
+    transform: translate(10px, -50%);
+  }
 }
 
 @media screen and (max-width: 576px) {

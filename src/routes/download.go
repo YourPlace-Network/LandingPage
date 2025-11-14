@@ -17,6 +17,7 @@ func DownloadRoutes(router *gin.Engine, title string, db *sql.DB) {
 		"version": currentVersion,
 		"windows": bucket + "/windows/YourPlace-" + currentVersion + ".exe",
 		"osx":     bucket + "/osx/YourPlace-" + currentVersion + ".pkg",
+		"linux":   bucket + "/linux/YourPlace-" + currentVersion,
 	}
 	downloadJson, _ := json.Marshal(downloads)
 
@@ -28,7 +29,7 @@ func DownloadRoutes(router *gin.Engine, title string, db *sql.DB) {
 		})
 	})
 	router.GET("/download/record", func(c *gin.Context) {
-		allowedOS := []string{"windows", "osx"}
+		allowedOS := []string{"windows", "osx", "linux"}
 		os := c.Query("os")
 		if !containsString(os, allowedOS) {
 			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "invalid os"})

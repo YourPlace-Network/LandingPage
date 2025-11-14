@@ -25,6 +25,7 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6" id="tosColumn">
             <div class="form-check" id="tosDiv">
+                <div id="arrowToTos"></div>
                 <input class="form-check-input" type="checkbox" id="tosCheckbox">
                 <label class="form-check-label" for="tosCheckbox">
                     I have read and agree to<br>the <a href="https://github.com/YourPlace-Network/Server/blob/main/TOS.md" target="_blank" rel="noopener noreferrer"><u>Terms of Service</u></a>
@@ -39,6 +40,7 @@
         <div class="col-sm-6" id="recommendedDiv">
             <h4>Recommended:</h4>
             <div id="recommendedBtn" class="grow clickable">
+                <div id="arrowToDownload"></div>
                 <img src="/static/image/windows.svg" alt="platform" id="recommendedImg">
                 <p id="recommendedText">Microsoft Windows</p>
             </div>
@@ -49,7 +51,7 @@
     <div class="row" id="row3">
         <h4>Other Platforms:</h4>
         <div class="col-sm-3"></div>
-        <div class="col-sm-3 platformColumn">
+        <div class="col-sm-2 platformColumn">
             <div class="platformDiv align-items-center">
                 <div id="winDiv" class="platformBtn grow clickable">
                     <img src="/static/image/windows.svg" alt="platform" class="platformImg">
@@ -57,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3 platformColumn">
+        <div class="col-sm-2 platformColumn">
             <div class="platformDiv align-items-center">
                 <div id="osxDiv" class="platformBtn grow clickable">
                     <img src="/static/image/apple.svg" alt="platform" class="platformImg">
@@ -65,8 +67,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-2 platformColumn">
+            <div class="platformDiv align-items-center">
+                <div id="linuxDiv" class="platformBtn grow clickable">
+                    <img src="/static/image/linux.svg" alt="platform" class="platformImg">
+                    <p class="platformText">Linux</p>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-3">
             {{template "modalDialog" .}}
+        </div>
+    </div>
+
+    <div class="row" id="versionRow">
+        <div class="col-sm-12">
+            <p id="versionText"></p>
         </div>
     </div>
 
