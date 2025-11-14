@@ -76,6 +76,9 @@
   color: map.get(global.$colors, "text");
   padding-top: 0.5em;
 }
+#alphaImg {
+  right: calc(50% - 20px) !important;
+}
 
 #versionRow {
   text-align: center;
