@@ -1,4 +1,4 @@
-{{define "htmlMenu"}}<div class="offcanvas offcanvas-end" tabindex="-1" id="htmlMenuOffcanvas" data-bs-scroll="true"
+{{define "htmlMenu"}}<div class="offcanvas offcanvas-end" tabindex="-1" id="htmlMenuOffcanvas" data-bs-scroll="false"
                           aria-labelledby="htmlMenuOffcanvas" data-bs-backdrop="true" data-bs-keyboard="true">
         <div class="offcanvas-header d-flex align-items-center" id="menuOffcanvasHeader">
             <a href="https://app.yourplace.network/p/yourplace.base.eth" class="grow cursorPointer" id="menuAvatarLink">
@@ -30,6 +30,10 @@
         </div>
     </div>
     <button class="btn grow" id="htmlMenu" data-bs-toggle="offcanvas" data-bs-target="#htmlMenuOffcanvas" aria-controls="offcanvasWithBothOptions">
-        <i class="bi bi-list"></i>
+        <span class="hamburger-icon">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </span>
     </button>
 {{template "modalLogin" .}}{{end}}

@@ -138,6 +138,10 @@ a:active {
   color: rgb(95, 95, 95);
   //user-select: none;
 }
+.pageHeader {
+  text-align: center;
+  margin-top: 1em;
+}
 
 @keyframes rotate {
   0% {
@@ -207,5 +211,15 @@ a:active {
   text-align: center;
   color: map.get($colors, "text");
   font-size: 10px;
-  margin-bottom: 25px;
+}
+footer {
+  flex-shrink: 0;
+  margin-top: 3em;
+  margin-bottom: 1em;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  > p {
+    margin: 0;
+  }
 }
