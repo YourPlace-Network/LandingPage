@@ -11,7 +11,7 @@ body.modal-open {
   right: 1em;
   height: 3.7em;
   width: 3.7em;
-  background: global.$quaternary;
+  background: map.get(global.$colors, "quaternary");
   z-index: 100;
   box-shadow: none;
   border: none;
@@ -28,14 +28,14 @@ body.modal-open {
   display: block;
   width: 100%;
   height: 0.25em;
-  background-color: global.$tertiary;
+  background-color: map.get(global.$colors, "tertiary");
   border-radius: 0.1em;
   transition: all 0.3s ease;
 }
 #htmlMenuOffcanvas {
   max-width: 80%;
-  min-width: 20%;
-  width: 14em;
+  min-width: 15em;
+  width: 15em;
   min-height: 100em;
   height: 100vh;
   overflow-y: hidden;
@@ -47,6 +47,7 @@ body.modal-open {
   position: relative;
   width: 75px;
   height: 75px;
+  border-radius: 0.7em;
 }
 #menuTitle {
   position: relative;
@@ -56,6 +57,9 @@ body.modal-open {
   width: 100%;
   flex-direction: column;
   flex-wrap: wrap;
+}
+#menuBody {
+  padding-left: 0.8em;
 }
 .menuItemDiv {
   display: block;
@@ -70,11 +74,11 @@ body.modal-open {
 .menuItemA:active,
 .menuItemA:visited {
   text-decoration: none;
-  color: global.$text;
+  color: map.get(global.$colors, "text");
 }
 #menuLoginBtn {
-  margin-left: 3em;
+  position: relative;
+  margin-left: 2.5em;
   height: 2.5em;
-  width: 6em;
-  color: global.$text;
+  width: 5em;
 }
