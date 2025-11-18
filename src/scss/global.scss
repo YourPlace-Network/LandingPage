@@ -53,6 +53,21 @@ $theme-colors: map-merge($theme-colors, $colors);
 
 /* Mixin and Pure CSS Styling */
 
+html {
+  scrollbar-gutter: stable;
+}
+html, body {
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-right: 0 !important;
+  overflow-y: scroll;
+}
 .btn {
   color: map.get($colors, "text");
   @include button-variant(

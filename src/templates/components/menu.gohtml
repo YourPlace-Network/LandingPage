@@ -1,8 +1,7 @@
-{{define "htmlMenu"}}<div class="offcanvas offcanvas-end" tabindex="-1" id="htmlMenuOffcanvas" data-bs-scroll="false"
-                          aria-labelledby="htmlMenuOffcanvas" data-bs-backdrop="true" data-bs-keyboard="true">
+{{define "htmlMenu"}}<div class="offcanvas offcanvas-end" tabindex="-1" id="htmlMenuOffcanvas" data-bs-scroll="false" aria-labelledby="htmlMenuOffcanvas" data-bs-backdrop="true" data-bs-keyboard="true">
         <div class="offcanvas-header d-flex align-items-center" id="menuOffcanvasHeader">
             <a href="https://app.yourplace.network/p/yourplace.base.eth" class="grow cursorPointer" id="menuAvatarLink">
-                <img src="/static/image/yourplace-logo.svg" id="menuAvatar" alt="Avatar">
+                <img src="/static/image/yourplace-logo.svg" id="menuAvatar" alt="avatar"  crossorigin="anonymous" referrerpolicy="no-referrer">
             </a>
             <a href="https://app.yourplace.network/login" class="grow cursorPointer" id="loginBtn">
                 <button class="btn btn-primary" id="menuLoginBtn" >Login</button>
@@ -39,4 +38,4 @@
             <span class="hamburger-line"></span>
         </span>
     </button>
-{{template "modalLogin" .}}{{end}}
+{{end}}

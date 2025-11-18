@@ -1,10 +1,6 @@
 @use "sass:map";
 @use "../global.scss";
 
-body.modal-open {
-  overflow-y: scroll !important;
-  padding-right: 0 !important;
-}
 #htmlMenu {
   position: fixed;
   top: 1em;
@@ -13,8 +9,6 @@ body.modal-open {
   width: 3.7em;
   background: map.get(global.$colors, "quaternary");
   z-index: 100;
-  box-shadow: none;
-  border: none;
 }
 .hamburger-icon {
   display: flex;
