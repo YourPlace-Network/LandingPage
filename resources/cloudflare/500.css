@@ -72,7 +72,8 @@ img {
 #errorHeader {
     display: block;
     margin: 0 auto;
+    padding-top: 0.5em;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 3rem;
 }
