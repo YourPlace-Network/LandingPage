@@ -2,9 +2,10 @@
 #logoImg {
     width: 50%;
     display: block;
-    margin: 0 auto;
+    margin: -3rem auto 0;
 }
 #errorHeader {
     display: block;
     margin: 0 auto;
+    text-align: center;
 }
