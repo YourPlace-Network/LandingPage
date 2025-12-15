@@ -40,7 +40,7 @@ interface DownloadLinks {
         async function init() {
             DOM.versionText.textContent = "Current Version: " + downloadLinks["version"];
             setRecommendedDownload();
-            ShowDialogModalHTML("YourPlace is early in its life and <u>many features are not complete</u><br><br>Only use this if you're comfortable testing early-access software");
+            //ShowDialogModalHTML("YourPlace is early in its life and <u>many features are not complete</u><br><br>Only use this if you're comfortable testing early-access software");
 
             const modalElement = document.getElementById("modalDialog")!;
             modalElement.addEventListener('hidden.bs.modal', () => {
