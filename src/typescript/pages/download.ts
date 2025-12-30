@@ -33,6 +33,7 @@ interface DownloadLinks {
             tosCheckbox: document.getElementById("tosCheckbox") as HTMLInputElement,
             arrowToTos: document.getElementById("arrowToTos") as HTMLDivElement,
             arrowToDownload: document.getElementById("arrowToDownload") as HTMLDivElement,
+            downloadCheckmark: document.getElementById("downloadCheckmark") as HTMLDivElement,
             versionText: document.getElementById("versionText") as HTMLParagraphElement,
         }
         const downloadLinks: DownloadLinks = window.downloadJson;
@@ -47,12 +48,12 @@ interface DownloadLinks {
             });
 
             disableDownloadButtons();
+            DOM.arrowToTos.style.display = "block";
 
             DOM.osxDiv.addEventListener("click", downloadOSX);
             DOM.winDiv.addEventListener("click", downloadWindows);
             DOM.linuxDiv.addEventListener("click", downloadLinux);
             DOM.recommendedBtn.addEventListener("click", downloadRecommended);
-
             DOM.tosCheckbox.addEventListener("change", toggleDownloadButtons);
         }
         function showTOSWarning() {
@@ -67,6 +68,7 @@ interface DownloadLinks {
                 disableDownloadButtons();
                 DOM.arrowToTos.style.display = "block";
                 DOM.arrowToDownload.style.display = "none";
+                DOM.downloadCheckmark.style.display = "none";
             }
         }
         function disableDownloadButtons() {
@@ -117,6 +119,8 @@ interface DownloadLinks {
                 showTOSWarning();
                 return;
             }
+            DOM.arrowToDownload.style.display = "none";
+            DOM.downloadCheckmark.style.display = "block";
             const clientInfo = detectClientInfo();
             if (clientInfo == "osx") {
                 downloadOSX();
