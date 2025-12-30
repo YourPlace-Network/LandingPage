@@ -53,11 +53,12 @@
 }
 #row3 {
   background-color: global.$tertiary;
-  height: 250px;
-  min-height: 250px;
-  margin-top: 10px;
-  padding-top: 20px;
-  padding-bottom: 25px;
+  height: auto;
+  min-height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2em;
 }
 #row3 > h4 {
   text-align: center;
@@ -81,7 +82,7 @@
 }
 #versionRow {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 #versionText {
   color: map.get(global.$colors, "text");
@@ -154,9 +155,6 @@
   }
 }
 @media screen and (max-width: 576px) {
-  #rowFooter {
-    margin-top: 6em;
-  }
   .platformColumn, .platformDiv {
     height: 7em;
   }
