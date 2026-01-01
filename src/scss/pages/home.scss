@@ -305,6 +305,8 @@
   padding: 1em;
   border: 3px solid global.$text;
   border-radius: 1em;
+  min-width: 17em;
+  align-content: center;
 }
 .ctaColumn {
   display: flex;
