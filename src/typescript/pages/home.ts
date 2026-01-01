@@ -33,17 +33,16 @@ import {ShowDialogModal} from "../components/modalDialog";
                 }
             });
             let currentIndex = 0;
-            setInterval(showNextTestimonial, 12000); // Start the carousel
-            function showNextTestimonial() { // Remove active class from current testimonial and add exit class
-                testimonials[currentIndex].classList.remove('active');
-                testimonials[currentIndex].classList.add('exit');
-                currentIndex = (currentIndex + 1) % testimonials.length; // Update index
-                setTimeout(() => { // Remove exit class from previous testimonial after animation
-                    testimonials.forEach(testimonial => {
-                        testimonial.classList.remove('exit');
-                    });
-                }, 500);
-                testimonials[currentIndex].classList.add('active'); // Add active class to next testimonial
+            setInterval(showNextTestimonial, 12000);
+            function showNextTestimonial() {
+                const prevIndex = currentIndex;
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                testimonials[currentIndex].classList.add('active');
+                testimonials[prevIndex].classList.remove('active');
+                testimonials[prevIndex].classList.add('exit');
+                setTimeout(() => {
+                    testimonials[prevIndex].classList.remove('exit');
+                }, 1000);
             }
         }
         async function subscribe() {
