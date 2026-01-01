@@ -59,7 +59,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   font-size: 20px;
   font-weight: 600;
-  color: #000;
+  color: global.$text;
 }
 #iphoneNotch {
   position: absolute;
@@ -98,7 +98,7 @@
   width: 100%;
   background-color: #393939;
   border-radius: 38px 38px 0 0;
-  padding: 45px 15px 0 15px;
+  padding: 35px 15px 0 15px;
 }
 #headlineText1 {
   position: relative;
@@ -123,13 +123,13 @@
 .headlineText {
   margin-top: 200px;
   font-size: 1em;
-  color: black;
+  color: global.$text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .chat-bubble {
   max-width: 300px;
   min-width: 150px;
-  background-color: #e9ecef;
+  background-color: global.$primary;
   padding: 12px 20px;
   border-radius: 20px;
   margin: 20px;
@@ -142,7 +142,7 @@
   left: 15px;
   border-width: 15px 15px 0;
   border-style: solid;
-  border-color: #e9ecef transparent transparent transparent;
+  border-color: global.$primary transparent transparent transparent;
 }
 .chat-bubble-right::before {
   content: "";
@@ -151,11 +151,12 @@
   right: 15px;
   border-width: 0 15px 15px;
   border-style: solid;
-  border-color: transparent transparent #e9ecef transparent;
+  border-color: transparent transparent global.$primary transparent;
 }
 .headlineProfileImg {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 0.25em;
 }
 
 #row2 {
@@ -307,7 +308,9 @@
   background-color: global.$tertiary;
 }
 .ctaDiv {
-  padding: 0.5em;
+  padding: 1em;
+  border: 3px solid global.$text;
+  border-radius: 1em;
 }
 .ctaColumn {
   display: flex;
