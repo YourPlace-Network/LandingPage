@@ -10,9 +10,22 @@ import {ShowDialogModal} from "../components/modalDialog";
         let DOM = {
             ctaBtn: document.getElementById("ctaBtn") as HTMLButtonElement,
             email: document.getElementById("emailInput") as HTMLInputElement,
+            iphoneStatusClock: document.getElementById("iphoneStatusClock") as HTMLSpanElement,
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const timeStr = `${hours}:${minutes}`;
+            if (DOM.iphoneStatusClock) {
+                DOM.iphoneStatusClock.textContent = timeStr;
+            }
         }
 
         async function init() {
+            updateClock();
+            setInterval(updateClock, 1000);
             let testimonials = document.querySelectorAll('.testimonial');
             testimonials.forEach((testimonial, index) => { // Initial setup
                 if (index !== 0) {
