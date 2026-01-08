@@ -34,6 +34,7 @@ endif
 install:
 	npm install webpack webpack-cli ts-loader
 	npm install package.json
+	npm i baseline-browser-mapping@latest -D
 	go get
 
 build:

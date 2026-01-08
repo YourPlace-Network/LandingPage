@@ -297,6 +297,11 @@
   height: 100%;
 }
 
+#joinUsText {
+  transform: translateY(1em);
+  font-size: 3.5rem;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+}
 #rowCTA {
   margin-top: 5em;
   background-color: global.$tertiary;
@@ -304,17 +309,47 @@
 .ctaDiv {
   padding: 1em;
   min-width: 17em;
+  align-content: center;
 }
 .ctaColumn {
   display: flex;
   justify-content: center;
   text-align: center;
 }
+#ctaSubscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 170px;
+}
 #ctaBtn {
   margin-top: 1em;
 }
 .ctaBtnText {
   font-size: 1.5em;
+}
+
+#ctaButton,
+#ctaBrowseBtn,
+#ctaBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  min-width: 180px;
+  max-height: 50px;
+  transition: max-height 0.3s ease;
+  .ctaBtnTextHidden {
+    font-size: 1.5em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  &:hover {
+    max-height: 100px;
+    .ctaBtnTextHidden {
+      opacity: 1;
+    }
+  }
 }
 #downloadText,
 #subscribeText,

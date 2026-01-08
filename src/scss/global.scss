@@ -68,6 +68,11 @@ body {
   padding-right: 0 !important;
   overflow-y: scroll;
 }
+.container-fluid.vh-100 {
+  height: auto !important;
+  min-height: auto;
+  flex: 1;
+}
 .btn {
   color: map.get($colors, "text");
   @include button-variant(
@@ -224,7 +229,7 @@ a:active {
 #footerText {
   text-align: center;
   color: map.get($colors, "text");
-  font-size: 10px;
+  font-size: 12px;
 }
 footer {
   flex-shrink: 0;
@@ -235,5 +240,15 @@ footer {
   font-size: 0.8em;
   > p {
     margin: 0;
+  }
+}
+.profileFooterImg {
+  width: 30px;
+    height: 30px;
+    filter: grayscale(100%);
+  margin: 0 1em 1em 1em;
+  &:hover {
+    filter: none;
+    scale: 1.3;
   }
 }
