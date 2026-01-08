@@ -222,10 +222,6 @@ a:active {
     right: calc(50% + 50px);
   }
 }
-#rowFooter {
-  padding-top: 3em;
-  background-color: $tertiary;
-}
 #footerText {
   text-align: center;
   color: map.get($colors, "text");
@@ -243,12 +239,10 @@ footer {
   }
 }
 .profileFooterImg {
-  width: 30px;
-    height: 30px;
-    filter: grayscale(100%);
-  margin: 0 1em 1em 1em;
+  width: 15px;
+  height: 15px;
+  margin-left: 0.5em;
   &:hover {
-    filter: none;
     scale: 1.3;
   }
 }
