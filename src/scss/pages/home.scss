@@ -322,16 +322,17 @@
   align-items: center;
   min-height: 170px;
 }
-#ctaBtn {
+#ctaSubscribeBtn {
   margin-top: 1em;
 }
 .ctaBtnText {
   font-size: 1.5em;
 }
 
-#ctaButton,
 #ctaBrowseBtn,
-#ctaBtn {
+#ctaDownloadBtn,
+#ctaLoginBtn,
+#ctaSubscribeBtn {
   display: flex;
   flex-direction: column;
   align-items: center;
