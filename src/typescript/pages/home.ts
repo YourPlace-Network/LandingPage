@@ -8,7 +8,7 @@ import {ShowDialogModal} from "../components/modalDialog";
 
     function main() {
         let DOM = {
-            ctaBtn: document.getElementById("ctaBtn") as HTMLButtonElement,
+            ctaSubscribeBtn: document.getElementById("ctaSubscribeBtn") as HTMLButtonElement,
             email: document.getElementById("emailInput") as HTMLInputElement,
             iphoneStatusClock: document.getElementById("iphoneStatusClock") as HTMLSpanElement,
         }
@@ -69,7 +69,7 @@ import {ShowDialogModal} from "../components/modalDialog";
             }
         }
 
-        DOM.ctaBtn!.addEventListener("click", subscribe);
+        DOM.ctaSubscribeBtn!.addEventListener("click", subscribe);
 
         init().then();
     }
