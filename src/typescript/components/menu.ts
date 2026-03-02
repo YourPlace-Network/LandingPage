@@ -8,6 +8,7 @@ import {InitTooltips} from "../util/bootstrap";
     function main() {
         let DOM = {
             htmlMenu: document.getElementById("htmlMenu")! as HTMLButtonElement,
+            menuLoginBtn: document.getElementById("menuLoginBtn")! as HTMLButtonElement,
             offcanvas: document.querySelectorAll('.offcanvas')! as NodeListOf<Element>,
             bsOffcanvas: new window.bootstrap.Offcanvas("#htmlMenuOffcanvas"),
             bsOffcanvasElement: document.getElementById("htmlMenuOffcanvas")! as HTMLElement,
@@ -22,6 +23,11 @@ import {InitTooltips} from "../util/bootstrap";
             e.preventDefault();
             e.stopPropagation();
             DOM.bsOffcanvas.show();
+        });
+        DOM.menuLoginBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = "https://app.yourplace.network/login";
         });
     }
 })();
