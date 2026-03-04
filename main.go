@@ -64,7 +64,6 @@ func main() {
 	routes.HomeRoutes(router, title, db, favicon)
 	routes.AboutRoutes(router, title)
 	routes.DownloadRoutes(router, title, db)
-	routes.FAQRoutes(router, title)
 	routes.PortRoutes(router)
 	// --- Start Web Server Loop --- //
 	csrfProtection := http.NewCrossOriginProtection()

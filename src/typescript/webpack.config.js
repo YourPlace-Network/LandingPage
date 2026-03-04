@@ -10,7 +10,6 @@ module.exports = {
         about: './pages/about.ts',
         download: './pages/download.ts',
         unsubscribe: './pages/unsubscribe.ts',
-        faq: './pages/faq.ts',
     },
     mode: 'development',
     module: {
