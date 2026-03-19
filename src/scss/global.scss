@@ -203,25 +203,6 @@ a:active {
   font-weight: bold;
   color: map.get($colors, "quaternary");
 }
-#alphaImg {
-  width: 300px;
-  height: 70px;
-  transform: rotate(-30deg);
-  z-index: 150;
-  position: absolute;
-  opacity: 50%;
-  right: calc(50% + 50px);
-}
-@media screen and (max-width: 488px) {
-  #alphaImg {
-    right: calc(50% + 50px);
-  }
-}
-@media screen and (max-width: 368px) {
-  #alphaImg {
-    right: calc(50% + 50px);
-  }
-}
 #footerText {
   text-align: center;
   color: map.get($colors, "text");
