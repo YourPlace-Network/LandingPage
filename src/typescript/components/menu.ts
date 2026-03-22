@@ -24,6 +24,15 @@ import {InitTooltips} from "../util/bootstrap";
             e.stopPropagation();
             DOM.bsOffcanvas.show();
         });
+        let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
+        DOM.htmlMenu.addEventListener("mouseenter", () => {
+            hoverTimeout = setTimeout(() => {
+                DOM.bsOffcanvas.show();
+            }, 500);
+        });
+        DOM.htmlMenu.addEventListener("mouseleave", () => {
+            if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
+        });
         DOM.menuLoginBtn.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
