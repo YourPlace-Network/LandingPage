@@ -28,7 +28,7 @@ import {InitTooltips} from "../util/bootstrap";
         DOM.htmlMenu.addEventListener("mouseenter", () => {
             hoverTimeout = setTimeout(() => {
                 DOM.bsOffcanvas.show();
-            }, 500);
+            }, 300);
         });
         DOM.htmlMenu.addEventListener("mouseleave", () => {
             if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
