@@ -14,7 +14,8 @@ func Headers() gin.HandlerFunc {
 				"media-src 'self' data:; "+
 				"font-src 'self' https://fonts.gstatic.com; "+
 				"connect-src 'self' data: https://* wss://*:* http://localhost:* ws://localhost:*; "+ // this must wildcard all TLS connections to allow for P2P traffic
-				"frame-src 'self' https://giphy.com; ")
+				"frame-src 'self' https://giphy.com; "+
+				"object-src 'self'; ")
 		c.Header("X-Content-Options", "nosniff")
 		c.Header("Cache-Control", "max-age=604800")
 		//c.Header("X-Frame-Options", fmt.Sprintf("sameorigin"))

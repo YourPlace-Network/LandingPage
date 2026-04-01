@@ -2,161 +2,16 @@
 @use "../global.scss";
 
 #iphoneFrame {
-  position: relative;
   margin-top: 1em;
-  max-width: 540px;
-  min-width: 340px;
-  background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-  border-radius: 50px 50px 0 0;
-  padding: 12px 12px 0;
-  border: 5px solid #3a3a3a;
-  border-bottom: none;
-  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.1);
-  &::before {
-    content: "";
-    position: absolute;
-    right: -3px;
-    top: 120px;
-    width: 4px;
-    height: 35px;
-    background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
-    border-radius: 2px;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: -3px;
-    top: 100px;
-    width: 4px;
-    height: 60px;
-    background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
-    border-radius: 2px;
-    box-shadow: 0 45px 0 #222;
-  }
-}
-#iphoneStatusBar {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 20px;
-  height: 32px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-  z-index: 5;
-}
-#iphoneStatusRight {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-#iphoneStatusLogo {
-  width: 25px;
-  height: 25px;
-}
-#iphoneStatusClock {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: global.$text;
-}
-#iphoneNotch {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 32px;
-  background: #0a0a0a;
-  border-radius: 0 0 20px 20px;
-  z-index: 10;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    background: radial-gradient(circle, #1a3a1a 30%, #0a0a0a 70%);
-    border-radius: 50%;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 45px;
-    height: 6px;
-    background: #1a1a1a;
-    border-radius: 3px;
-  }
-}
-#headlineConversationDiv {
   width: 100%;
-  background-color: #393939;
-  border-radius: 38px 38px 0 0;
-  padding: 35px 15px 0 15px;
+  max-width: 540px;
+  height: auto;
 }
-#headlineText1 {
-  position: relative;
-  float: left;
-}
-#headlineText2 {
-  position: relative;
-  float: right;
-}
-#profile2Img {
-  position: relative;
-  float: right;
-  right: -317px;
-  top: -50px;
-}
-#profile1Img {
-  position: relative;
-  float: left;
-  left: -317px;
-  top: 120px;
-}
-.headlineText {
-  margin-top: 200px;
-  font-size: 1em;
-  color: global.$text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-.chat-bubble {
-  max-width: 300px;
-  min-width: 150px;
-  background-color: global.$primary;
-  padding: 12px 20px;
-  border-radius: 20px;
-  margin: 20px;
-  position: relative;
-}
-.chat-bubble-left::before {
-  content: "";
-  position: absolute;
-  bottom: -14px;
-  left: 15px;
-  border-width: 15px 15px 0;
-  border-style: solid;
-  border-color: global.$primary transparent transparent transparent;
-}
-.chat-bubble-right::before {
-  content: "";
-  position: absolute;
-  top: -14px;
-  right: 15px;
-  border-width: 0 15px 15px;
-  border-style: solid;
-  border-color: transparent transparent global.$primary transparent;
-}
-.headlineProfileImg {
-  width: 50px;
-  height: 50px;
-  border-radius: 0.25em;
+
+#descriptionDiv {
+  text-align: center;
+  font-size: 1.3em;
+  margin-top: 1em;
 }
 
 #row2 {
@@ -168,6 +23,10 @@
   border-radius: 1em;
   height: 150px;
   text-align: center;
+  transition: border-color 0.2s ease-in-out;
+  &:hover {
+    border-color: global.$quaternary;
+  }
   align-content: center;
   margin: 1em;
 }
@@ -380,66 +239,17 @@
     font-size: 1.1em;
   }
 }
-@media screen and (max-width: 600px) {
-  #iphoneFrame {
-    min-width: auto;
-    max-width: 100%;
-    border-radius: 35px 35px 0 0;
-    padding: 10px;
-    padding-bottom: 0;
-    border-width: 4px;
-    margin-left: 10px;
-    margin-right: 10px;
-    &::before, &::after {
-      display: none;
-    }
-  }
-  #iphoneStatusBar {
-    top: 10px;
-    left: 10px;
-    right: 18px;
-    height: 28px;
-    padding: 0 15px;
-  }
-  #iphoneStatusLogo {
-    width: 21px;
-    height: 21px;
-  }
-  #iphoneStatusClock {
-    font-size: 17px;
-  }
-  #iphoneNotch {
-    width: 100px;
-    height: 28px;
-    top: 10px;
-    border-radius: 0 0 16px 16px;
-  }
-  #headlineConversationDiv {
-    border-radius: 28px 28px 0 0;
-    padding: 40px 12px 0 12px;
-  }
-  .chat-bubble {
-    max-width: 200px;
-    min-width: 120px;
-    padding: 10px 14px;
-    margin: 15px;
-    font-size: 0.9em;
-  }
-  .headlineProfileImg {
-    width: 40px;
-    height: 40px;
-  }
-}
+
 @media screen and (max-width: 575px) {
   #row2 {
     margin-bottom: 20px;
   }
   .featureDiv {
     height: 100px;
-    margin: 0;
+    margin: 0 0 1em 0;
   }
   #rowPreview {
-    padding-top: 13em;
+    padding-top: 17em;
   }
   #rowCTA {
     margin-top: 0;
@@ -449,6 +259,7 @@
   #row3 {
     height: 0;
     padding: 0;
+
   }
   #row3 > div:first-child {
     height: 0;
@@ -474,71 +285,5 @@
   .citationImg {
     width: 40px;
     height: 40px;
-  }
-  #iphoneFrame {
-    border-radius: 30px 30px 0 0;
-    padding: 8px;
-    padding-bottom: 0;
-    border-width: 3px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  #iphoneStatusBar {
-    top: 8px;
-    left: 8px;
-    right: 15px;
-    height: 24px;
-    padding: 0 12px;
-  }
-  #iphoneStatusLogo {
-    width: 18px;
-    height: 18px;
-  }
-  #iphoneStatusClock {
-    font-size: 15px;
-  }
-  #iphoneNotch {
-    width: 80px;
-    height: 24px;
-    top: 8px;
-    border-radius: 0 0 14px 14px;
-    &::before {
-      width: 6px;
-      height: 6px;
-      left: 14px;
-    }
-    &::after {
-      width: 30px;
-      height: 4px;
-      right: 18px;
-    }
-  }
-  #headlineConversationDiv {
-    border-radius: 24px 24px 0 0;
-    padding: 35px 10px 0 10px;
-  }
-  .chat-bubble {
-    max-width: 160px;
-    min-width: 100px;
-    padding: 8px 12px;
-    margin: 10px;
-    font-size: 0.85em;
-    border-radius: 15px;
-  }
-  .headlineProfileImg {
-    width: 35px;
-    height: 35px;
-  }
-  #profile2Img {
-    position: relative;
-    float: right;
-    top: -160px;
-    right: 25px;
-  }
-  #profile1Img {
-    position: relative;
-    float: left;
-    left: 25px;
-    top: 0;
   }
 }

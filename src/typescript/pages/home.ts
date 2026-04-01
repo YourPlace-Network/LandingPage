@@ -1,7 +1,7 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import "../../scss/pages/home.scss";
 import "../components/menu";
-import {ShowDialogModal} from "../components/modalDialog";
+import {ShowDialogModal, ShowDialogModalHTML} from "../components/modalDialog";
 
 (function initialize() {
     if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", main);} else {main();}
@@ -10,7 +10,11 @@ import {ShowDialogModal} from "../components/modalDialog";
         let DOM = {
             ctaSubscribeBtn: document.getElementById("ctaSubscribeBtn") as HTMLButtonElement,
             email: document.getElementById("emailInput") as HTMLInputElement,
-            iphoneStatusClock: document.getElementById("iphoneStatusClock") as HTMLSpanElement,
+            hostingFeatureDiv: document.getElementById("hostingFeatureDiv") as HTMLDivElement,
+            iphoneFrame: document.getElementById("iphoneFrame") as HTMLObjectElement,
+            iphoneStatusClock: null as SVGTextElement | null,
+            openFeatureDiv: document.getElementById("openFeatureDiv") as HTMLDivElement,
+            relationshipFeatureDiv: document.getElementById("relationshipFeatureDiv") as HTMLDivElement,
         }
 
         function updateClock() {
@@ -24,8 +28,14 @@ import {ShowDialogModal} from "../components/modalDialog";
         }
 
         async function init() {
-            updateClock();
-            setInterval(updateClock, 1000);
+            DOM.iphoneFrame.addEventListener("load", () => {
+                const svgDoc = DOM.iphoneFrame.contentDocument;
+                if (svgDoc) {
+                    DOM.iphoneStatusClock = svgDoc.getElementById("iphoneStatusClock") as unknown as SVGTextElement;
+                    updateClock();
+                    setInterval(updateClock, 1000);
+                }
+            });
             let testimonials = document.querySelectorAll('.testimonial');
             testimonials.forEach((testimonial, index) => { // Initial setup
                 if (index !== 0) {
@@ -70,6 +80,15 @@ import {ShowDialogModal} from "../components/modalDialog";
         }
 
         DOM.ctaSubscribeBtn!.addEventListener("click", subscribe);
+        DOM.relationshipFeatureDiv.addEventListener("click", () => {
+            ShowDialogModalHTML("<b>Own Your Relationships</b><br><br>Your social connections belong to you, not a corporation. YourPlace stores your relationships locally and on-chain, so no platform can hold your network hostage or sell your data.");
+        });
+        DOM.openFeatureDiv.addEventListener("click", () => {
+            ShowDialogModalHTML("<b>Open and Uncensorable</b><br><br>YourPlace is fully open-source and decentralized. Your content is distributed across the network, making it resistant to censorship and single points of failure.");
+        });
+        DOM.hostingFeatureDiv.addEventListener("click", () => {
+            ShowDialogModalHTML("<b>ALGO, BASE, ETH &amp; more</b><br><br>YourPlace supports posting to multiple blockchains including Algorand, Base and Ethereum. Choose your favorite chain and interact with people from others. And more chains are on the way!");
+        });
 
         init().then();
     }
