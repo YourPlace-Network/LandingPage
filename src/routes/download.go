@@ -23,9 +23,12 @@ func DownloadRoutes(router *gin.Engine, title string, db *sql.DB) {
 
 	router.GET("/download", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "src/templates/pages/download.gohtml", gin.H{
-			"title":     title,
-			"pageName":  "download",
-			"downloads": template.JS(downloadJson), // use template.JS to safely inject JavaScript
+			"title":           title,
+			"pageName":        "download",
+			"downloads":       template.JS(downloadJson), // use template.JS to safely inject JavaScript
+			"metaTitle":       "Download YourPlace",
+			"metaDescription": "Download YourPlace for Windows, macOS, and Linux. Run a local-first, distributed social media node and own your content, followers, and relationships.",
+			"metaUrl":         "https://yourplace.network/download",
 		})
 	})
 	router.GET("/download/record", func(c *gin.Context) {

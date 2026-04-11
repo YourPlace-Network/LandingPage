@@ -11,8 +11,11 @@ import (
 func HomeRoutes(router *gin.Engine, title string, db *sql.DB, favicon []byte) {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "src/templates/pages/home.gohtml", gin.H{
-			"title":    title,
-			"pageName": "home",
+			"title":           title,
+			"pageName":        "home",
+			"metaTitle":       "YourPlace - Distributed Social Media",
+			"metaDescription": "YourPlace is an open-source, uncensorable, distributed social media platform. Own your content, your followers, and your relationships.",
+			"metaUrl":         "https://yourplace.network/",
 		})
 	})
 	router.GET("/favicon.ico", func(c *gin.Context) {
@@ -20,8 +23,11 @@ func HomeRoutes(router *gin.Engine, title string, db *sql.DB, favicon []byte) {
 	})
 	router.GET("/unsubscribe", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "src/templates/pages/unsubscribe.gohtml", gin.H{
-			"title":    title,
-			"pageName": "unsubscribe",
+			"title":           title,
+			"pageName":        "unsubscribe",
+			"metaTitle":       "Unsubscribe - YourPlace",
+			"metaDescription": "Unsubscribe from the YourPlace newsletter.",
+			"metaUrl":         "https://yourplace.network/unsubscribe",
 		})
 	})
 
