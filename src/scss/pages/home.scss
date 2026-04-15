@@ -150,10 +150,16 @@
   width: 74.6%;
   height: 78%;
   z-index: 10;
+  overflow: hidden;
 }
-#previewImg {
-  width: 100%;
-  height: 100%;
+#previewIframe {
+  width: 150%;
+  height: 150%;
+  border: 0;
+  background: #fff;
+  display: block;
+  transform: scale(0.666666667);
+  transform-origin: top left;
 }
 
 #joinUsText {
